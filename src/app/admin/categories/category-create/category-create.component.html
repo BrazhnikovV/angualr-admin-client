@@ -1,0 +1,23 @@
+<div class="row mb-2">
+  <div class="col-md-6 mt-2">
+    <div class="ui-g ui-fluid">
+      <div class="ui-g-12 ui-md-12 m-0 p-0">
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+          <input type="text" pInputText placeholder="Название категории">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 mt-2">
+    <span class="label-top">Видимость : </span>
+    <p-inputSwitch [(ngModel)]="checked"></p-inputSwitch>
+  </div>
+</div>
+<div class="row mb-2">
+  <div class="col-md-12 mt-2">
+    <div class="ui-g ui-fluid">
+      <textarea rows="5" class="ui-md-12" placeholder="Введите описание категории" pInputTextarea></textarea>
+    </div>
+  </div>
+</div>

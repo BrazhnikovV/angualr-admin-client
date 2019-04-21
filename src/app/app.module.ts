@@ -1,27 +1,36 @@
+/** ==== Загружаем модули они должны быть подключены в разделе imports директивы NgModule */
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import { AppComponent } from './app.component';
+import { FormsModule } from '@angular/forms';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { PanelMenuModule } from 'primeng/panelmenu';
+import { TableModule } from 'primeng/table';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputSwitchModule } from 'primeng/inputswitch';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+
+/** ==== Загружаем компоненты они должны быть подключены в разделе declarations директивы NgModule */
+import { AppComponent } from './app.component';
 import { MenuComponent } from './admin/menu/menu.component';
 import { TopMenuComponent } from './top-menu/top-menu.component';
 import { HeaderComponent } from './admin/header/header.component';
 import { SliderComponent } from './admin/slider/slider.component';
 import { OrdersComponent } from './admin/orders/orders.component';
 import { LeftMenuComponent } from './left-menu/left-menu.component';
-import { CatalogComponent } from './admin/catalog/catalog.component';
 import { PartnersComponent } from './admin/partners/partners.component';
+import { CategoryListComponent } from './admin/categories/category-list/category-list.component';
+import { CategoryCreateComponent } from './admin/categories/category-create/category-create.component';
 
 const appRoutes: Routes = [
   { path: 'menu',     component: MenuComponent },
   { path: 'header',   component: HeaderComponent },
   { path: 'slider',   component: SliderComponent },
   { path: 'orders',   component: OrdersComponent },
-  { path: 'catalog',  component: CatalogComponent },
+  { path: 'category/list',  component: CategoryListComponent },
+  { path: 'category/create',  component: CategoryCreateComponent },
   { path: 'partners', component: PartnersComponent }
   // { path: '**', component: Page404Component },
 ];
@@ -34,14 +43,20 @@ const appRoutes: Routes = [
     SliderComponent,
     OrdersComponent,
     TopMenuComponent,
-    CatalogComponent,
     LeftMenuComponent,
     PartnersComponent,
+    CategoryListComponent,
+    CategoryCreateComponent
   ],
   imports: [
+    FormsModule,
+    TableModule,
     BrowserModule,
     TabMenuModule,
     PanelMenuModule,
+    InputTextModule,
+    InputSwitchModule,
+    InputTextareaModule,
     HttpClientModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes)

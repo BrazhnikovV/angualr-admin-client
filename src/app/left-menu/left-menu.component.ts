@@ -13,9 +13,20 @@ export class LeftMenuComponent implements OnInit {
   ngOnInit() {
     this.items = [
       {
-        label: 'Каталог',
+        label: 'Категории',
         icon: 'pi pi-pw pi-list',
-        url: '/catalog'
+         items: [
+           {
+             label: 'Список категорий',
+             icon: 'pi pi-fw pi-list',
+             url: '/category/list',
+           },
+           {
+             label: 'Создать категорию',
+             icon: 'pi pi-fw pi-plus',
+             url: '/category/create',
+           }
+         ]
       },
       {
         label: 'Меню',

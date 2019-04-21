@@ -12,7 +12,13 @@ export class RpcService {
    *  @access private
    *  @var string heroesUrl - url адрес rest api(rpc)
    */
-  private heroesUrl = 'http://shop-rest-api/v1/orders?access-token=9zfb5fKB4f9rAC-b_HEawN6dSGLO0Krh';
+  private heroesUrl = 'http://shop-rest-api/v1/';
+
+  /**
+   *  @access private
+   *  @var string token -
+   */
+  private token = '?access-token=9zfb5fKB4f9rAC-b_HEawN6dSGLO0Krh';
 
   /**
    * constructor - конструктор
@@ -25,15 +31,17 @@ export class RpcService {
    * @param requestType - тип запроса
    * @param data - массив данных для post - запроса
    */
-  public getData( requestType: string, data: Array<string> = [] ) {
+  public getData( requestType: string, route: string, data: Array<string> = [] ) {
+
+    console.log(this.heroesUrl + route + this.token);
 
     if ( requestType === 'post' ) {
-      return this.http.post( this.heroesUrl, data ).pipe(
+      return this.http.post( this.heroesUrl + route + this.token, data ).pipe(
         tap(response => {}),
         catchError(response => this.handleError(data))
       );
     } else {
-      return this.http.get( this.heroesUrl ).pipe(
+      return this.http.get( this.heroesUrl + route + this.token ).pipe(
         tap(response => {}),
         catchError(response => this.handleError(data))
       );
