@@ -1,6 +1,10 @@
+/* tslint:disable:no-redundant-jsdoc */
 import { Component, OnInit } from '@angular/core';
 import { RpcService } from '../../../services/rpc.service';
 
+/**
+ * @classdesc - список категорий
+ */
 @Component({
   selector: 'app-category-list',
   templateUrl: './category-list.component.html',
@@ -9,9 +13,17 @@ import { RpcService } from '../../../services/rpc.service';
 })
 export class CategoryListComponent implements OnInit {
 
-  constructor(private rpcService: RpcService) {}
+  /**
+   * constructor
+   * @param rpcService
+   */
+  constructor( private rpcService: RpcService ) {}
 
-  private categories: [];
+  /**
+   * @access public
+   * @var categories: []
+   */
+  public categories: [];
 
   ngOnInit() {
     this.rpcService.getData('get', 'categories' ).subscribe((response) => {

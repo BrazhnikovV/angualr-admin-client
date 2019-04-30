@@ -8,7 +8,7 @@ import { NgModel} from '@angular/forms';
 })
 export class CategoryCreateComponent implements OnInit {
 
-  private checked = false;
+  public checked = false;
 
   constructor() {}
 

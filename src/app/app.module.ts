@@ -14,7 +14,6 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 
 /** ==== Загружаем компоненты они должны быть подключены в разделе declarations директивы NgModule */
 import { AppComponent } from './app.component';
-import { MenuComponent } from './admin/menu/menu.component';
 import { TopMenuComponent } from './top-menu/top-menu.component';
 import { HeaderComponent } from './admin/header/header.component';
 import { SliderComponent } from './admin/slider/slider.component';
@@ -23,9 +22,10 @@ import { LeftMenuComponent } from './left-menu/left-menu.component';
 import { PartnersComponent } from './admin/partners/partners.component';
 import { CategoryListComponent } from './admin/categories/category-list/category-list.component';
 import { CategoryCreateComponent } from './admin/categories/category-create/category-create.component';
+import { MenuListComponent } from './admin/menu/menu-list/menu-list.component';
 
 const appRoutes: Routes = [
-  { path: 'menu',     component: MenuComponent },
+  { path: 'menu',     component: MenuListComponent },
   { path: 'header',   component: HeaderComponent },
   { path: 'slider',   component: SliderComponent },
   { path: 'orders',   component: OrdersComponent },
@@ -38,7 +38,6 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent,
     HeaderComponent,
     SliderComponent,
     OrdersComponent,
@@ -46,7 +45,8 @@ const appRoutes: Routes = [
     LeftMenuComponent,
     PartnersComponent,
     CategoryListComponent,
-    CategoryCreateComponent
+    CategoryCreateComponent,
+    MenuListComponent
   ],
   imports: [
     FormsModule,
