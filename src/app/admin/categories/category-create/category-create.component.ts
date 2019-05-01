@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { NgModel} from '@angular/forms';
 
+/**
+ * @class - CategoryCreateComponent
+ * @classdesc - компонент для создания категории
+ */
 @Component({
   selector: 'app-category-create',
   templateUrl: './category-create.component.html',
@@ -8,10 +11,16 @@ import { NgModel} from '@angular/forms';
 })
 export class CategoryCreateComponent implements OnInit {
 
-  public checked = false;
+  /**
+   * @access private
+   * @var false checked
+   */
+  private checked = false;
 
+  /**
+   * constructor
+   */
   constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 }

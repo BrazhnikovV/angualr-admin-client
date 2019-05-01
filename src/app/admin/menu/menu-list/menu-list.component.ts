@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { RpcService } from '../../../services/rpc.service';
 
+/**
+ * @class - MenuListComponent
+ * @classdesc - компонент для отображения списка пунктов меню
+ */
 @Component({
   selector: 'app-menu-list',
   templateUrl: './menu-list.component.html',
@@ -7,9 +12,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuListComponent implements OnInit {
 
-  constructor() { }
+  /**
+   * @access public
+   * @var items: []
+   */
+  public items: [];
 
-  ngOnInit() {
-  }
+  /**
+   * constructor
+   * @param rpcService
+   */
+  constructor( private rpcService: RpcService ) {}
 
+  ngOnInit() {}
 }

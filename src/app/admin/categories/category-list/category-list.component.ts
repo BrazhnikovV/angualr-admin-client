@@ -1,9 +1,9 @@
-/* tslint:disable:no-redundant-jsdoc */
 import { Component, OnInit } from '@angular/core';
 import { RpcService } from '../../../services/rpc.service';
 
 /**
- * @classdesc - список категорий
+ * @class - CategoryListComponent
+ * @classdesc - компонент отображения списка категорий
  */
 @Component({
   selector: 'app-category-list',
@@ -14,16 +14,26 @@ import { RpcService } from '../../../services/rpc.service';
 export class CategoryListComponent implements OnInit {
 
   /**
-   * constructor
-   * @param rpcService
+   * @access private
+   * @var boolean checked
    */
-  constructor( private rpcService: RpcService ) {}
+  private checked: boolean;
 
   /**
    * @access public
    * @var categories: []
    */
   public categories: [];
+
+  /**
+   * constructor
+   * @param rpcService
+   */
+  constructor( private rpcService: RpcService ) {}
+
+  onClickMe() {
+    console.log('You are my hero!');
+  }
 
   ngOnInit() {
     this.rpcService.getData('get', 'categories' ).subscribe((response) => {

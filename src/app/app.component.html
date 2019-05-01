@@ -10,6 +10,11 @@
       <app-left-menu></app-left-menu>
     </div>
     <div class="col-md-9">
+      <div class="row mb-2">
+        <div class="col-md-12 mt-2">
+          <p-breadcrumb [model]="itemsBreadCrumb" [home]="home"></p-breadcrumb>
+        </div>
+      </div>
       <router-outlet></router-outlet>
     </div>
   </div>
