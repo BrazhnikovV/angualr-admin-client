@@ -31,12 +31,22 @@ export class LeftMenuComponent implements OnInit {
 
   ngOnInit() {
     this.items = [
-      { label: 'Категории', icon: 'pi pi-pw pi-list', url: '/category/list' },
-      { label: 'Меню', icon: 'pi pi-pw pi-bars', url: '/menu/list' } ,
-      { label: 'Партнеры', icon: 'pi pi-pw pi-user-plus', url: '/partners' },
-      { label: 'Шапка', icon: 'pi pi-pw pi-eject',  url: '/header' },
-      { label: 'Слайдер', icon: 'pi pi-pw pi-camera', url: '/slider' },
-      { label: 'Заказы', icon: 'pi pi-pw pi-dollar', url: '/orders' }
+      { label: 'Категории', icon: 'pi pi-pw pi-list', items:
+        [
+          { label: 'Список категорий', icon: 'pi pi-pw pi-list', routerLink: '/category/list' },
+          { label: 'Добавить категорию', icon: 'pi pi-pw pi-user-plus', routerLink: '/category/create' }
+        ]
+      },
+      { label: 'Меню', icon: 'pi pi-pw pi-bars', items:
+        [
+          { label: 'Список пунктов меню', icon: 'pi pi-pw pi-list', routerLink: '/menu/list' },
+          { label: 'Добавить пункт меню', icon: 'pi pi-pw pi-user-plus', routerLink: '/menu/create' }
+        ]
+      } ,
+      { label: 'Партнеры', icon: 'pi pi-pw pi-user-plus', routerLink: '/partners' },
+      { label: 'Шапка', icon: 'pi pi-pw pi-eject',  routerLink: '/header' },
+      { label: 'Слайдер', icon: 'pi pi-pw pi-camera', routerLink: '/slider' },
+      { label: 'Заказы', icon: 'pi pi-pw pi-dollar', routerLink: '/orders' }
     ];
   }
 }
