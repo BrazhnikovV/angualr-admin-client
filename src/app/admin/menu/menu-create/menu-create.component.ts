@@ -22,6 +22,5 @@ export class MenuCreateComponent implements OnInit {
    */
   constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 }

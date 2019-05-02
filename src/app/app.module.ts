@@ -22,12 +22,14 @@ import { HeaderComponent } from './admin/header/header.component';
 import { SliderComponent } from './admin/slider/slider.component';
 import { OrdersComponent } from './admin/orders/orders.component';
 import { LeftMenuComponent } from './left-menu/left-menu.component';
-import { PartnersComponent } from './admin/partners/partners.component';
-import { CategoryListComponent } from './admin/categories/category-list/category-list.component';
-import { CategoryCreateComponent } from './admin/categories/category-create/category-create.component';
+import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { MenuListComponent } from './admin/menu/menu-list/menu-list.component';
 import { MenuCreateComponent } from './admin/menu/menu-create/menu-create.component';
-import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
+import { PartnersListComponent } from './admin/partners/partners-list/partners-list.component';
+import { CategoryListComponent } from './admin/categories/category-list/category-list.component';
+import { CategoryCreateComponent } from './admin/categories/category-create/category-create.component';
+import { PartnersCreateComponent } from './admin/partners/partners-create/partners-create.component';
+
 
 const appRoutes: Routes = [
   { path: 'menu/list',   component: MenuListComponent, data: {'breadCrumbName':'Список пунктов меню', 'icon':'pi pi-list'} },
@@ -37,7 +39,8 @@ const appRoutes: Routes = [
   { path: 'orders',      component: OrdersComponent, data: {'breadCrumbName':''} },
   { path: 'category/list',   component: CategoryListComponent, data: {'breadCrumbName':'Список категорий', 'icon':'pi pi-list' } },
   { path: 'category/create', component: CategoryCreateComponent, data: {'breadCrumbName':'Создать категорию', 'icon':'pi pi-plus' } },
-  { path: 'partners', component: PartnersComponent, data: {'breadCrumbName':'Партнеры', 'icon':'pi pi-plus' } }
+  { path: 'partners/list', component: PartnersListComponent, data: {'breadCrumbName':'Список партнеров', 'icon':'pi pi-plus' } },
+  { path: 'partners/create', component: PartnersCreateComponent, data: {'breadCrumbName':'Добавить партнера', 'icon':'pi pi-plus' } }
   // { path: '**', component: Page404Component },
 ];
 
@@ -49,12 +52,14 @@ const appRoutes: Routes = [
     OrdersComponent,
     TopMenuComponent,
     LeftMenuComponent,
-    PartnersComponent,
-    CategoryListComponent,
-    CategoryCreateComponent,
     MenuListComponent,
     MenuCreateComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    PartnersListComponent,
+    CategoryListComponent,
+    PartnersListComponent,
+    CategoryCreateComponent,
+    PartnersCreateComponent
   ],
   imports: [
     FormsModule,

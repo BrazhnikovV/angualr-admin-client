@@ -43,7 +43,12 @@ export class LeftMenuComponent implements OnInit {
           { label: 'Добавить пункт меню', icon: 'pi pi-pw pi-user-plus', routerLink: '/menu/create' }
         ]
       } ,
-      { label: 'Партнеры', icon: 'pi pi-pw pi-user-plus', routerLink: '/partners' },
+      { label: 'Партнеры', icon: 'pi pi-pw pi-user-plus', items:
+          [
+            { label: 'Список партнеров', icon: 'pi pi-pw pi-list', routerLink: '/partners/list' },
+            { label: 'Добавить партнера', icon: 'pi pi-pw pi-user-plus', routerLink: '/partners/create' }
+          ]
+      },
       { label: 'Шапка', icon: 'pi pi-pw pi-eject',  routerLink: '/header' },
       { label: 'Слайдер', icon: 'pi pi-pw pi-camera', routerLink: '/slider' },
       { label: 'Заказы', icon: 'pi pi-pw pi-dollar', routerLink: '/orders' }
