@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { MenuItem } from 'primeng/api';
-import { Router, Routes } from "@angular/router";
 
-
+/**
+ * @class - AppComponent
+ * @classdesc - главный компонент приложения
+ */
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -21,7 +22,5 @@ export class AppComponent {
    */
   constructor() {}
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 }

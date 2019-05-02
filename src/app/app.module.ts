@@ -20,23 +20,23 @@ import { AppComponent } from './app.component';
 import { TopMenuComponent } from './top-menu/top-menu.component';
 import { HeaderComponent } from './admin/header/header.component';
 import { SliderComponent } from './admin/slider/slider.component';
-import { OrdersComponent } from './admin/orders/orders.component';
 import { LeftMenuComponent } from './left-menu/left-menu.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { MenuListComponent } from './admin/menu/menu-list/menu-list.component';
 import { MenuCreateComponent } from './admin/menu/menu-create/menu-create.component';
+import { OrdersListComponent } from './admin/orders/orders-list/orders-list.component';
 import { PartnersListComponent } from './admin/partners/partners-list/partners-list.component';
 import { CategoryListComponent } from './admin/categories/category-list/category-list.component';
-import { CategoryCreateComponent } from './admin/categories/category-create/category-create.component';
 import { PartnersCreateComponent } from './admin/partners/partners-create/partners-create.component';
+import { CategoryCreateComponent } from './admin/categories/category-create/category-create.component';
 
 
 const appRoutes: Routes = [
   { path: 'menu/list',   component: MenuListComponent, data: {'breadCrumbName':'Список пунктов меню', 'icon':'pi pi-list'} },
   { path: 'menu/create', component: MenuCreateComponent, data: {'breadCrumbName':'Создать пункт меню', 'icon':'pi pi-plus'} },
-  { path: 'header',      component: HeaderComponent, data: {'breadCrumbName':''} },
+  { path: 'header',      component: HeaderComponent, data: {'breadCrumbName':'Шапка сайта'} },
   { path: 'slider',      component: SliderComponent, data: {'breadCrumbName':''} },
-  { path: 'orders',      component: OrdersComponent, data: {'breadCrumbName':''} },
+  { path: 'orders', component: OrdersListComponent, data: {'breadCrumbName':'Заказы'} },
   { path: 'category/list',   component: CategoryListComponent, data: {'breadCrumbName':'Список категорий', 'icon':'pi pi-list' } },
   { path: 'category/create', component: CategoryCreateComponent, data: {'breadCrumbName':'Создать категорию', 'icon':'pi pi-plus' } },
   { path: 'partners/list', component: PartnersListComponent, data: {'breadCrumbName':'Список партнеров', 'icon':'pi pi-plus' } },
@@ -49,12 +49,13 @@ const appRoutes: Routes = [
     AppComponent,
     HeaderComponent,
     SliderComponent,
-    OrdersComponent,
     TopMenuComponent,
     LeftMenuComponent,
     MenuListComponent,
     MenuCreateComponent,
+    OrdersListComponent,
     BreadcrumbComponent,
+    OrdersListComponent,
     PartnersListComponent,
     CategoryListComponent,
     PartnersListComponent,
