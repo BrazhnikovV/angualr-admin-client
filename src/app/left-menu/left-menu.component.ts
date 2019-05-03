@@ -37,10 +37,10 @@ export class LeftMenuComponent implements OnInit {
           { label: 'Добавить категорию', icon: 'pi pi-pw pi-user-plus', routerLink: '/category/create' }
         ]
       },
-      { label: 'Меню', icon: 'pi pi-pw pi-bars', items:
+      { label: 'Продукты', icon: 'pi pi-pw pi-bars', items:
         [
-          { label: 'Список пунктов меню', icon: 'pi pi-pw pi-list', routerLink: '/menu/list' },
-          { label: 'Добавить пункт меню', icon: 'pi pi-pw pi-user-plus', routerLink: '/menu/create' }
+          { label: 'Список продуктов', icon: 'pi pi-pw pi-list', routerLink: '/products/list' },
+          { label: 'Добавить продукт', icon: 'pi pi-pw pi-user-plus', routerLink: '/products/create' }
         ]
       } ,
       { label: 'Партнеры', icon: 'pi pi-pw pi-user-plus', items:
@@ -49,9 +49,21 @@ export class LeftMenuComponent implements OnInit {
             { label: 'Добавить партнера', icon: 'pi pi-pw pi-user-plus', routerLink: '/partners/create' }
           ]
       },
-      { label: 'Шапка', icon: 'pi pi-pw pi-eject',  routerLink: '/header' },
-      { label: 'Слайдер', icon: 'pi pi-pw pi-camera', routerLink: '/slider' },
-      { label: 'Заказы', icon: 'pi pi-pw pi-dollar', routerLink: '/orders' }
+      { label: 'Шапка', icon: 'pi pi-pw pi-eject', items:
+          [
+            { label: 'Header', icon: 'pi pi-pw pi-list', routerLink: '/header' },
+          ]
+      },
+      { label: 'Слайдер', icon: 'pi pi-pw pi-camera', items:
+          [
+            { label: 'Slider', icon: 'pi pi-pw pi-list', routerLink: '/slider' },
+          ]
+      },
+      { label: 'Заказы', icon: 'pi pi-pw pi-dollar', items:
+          [
+            { label: 'Orders', icon: 'pi pi-pw pi-list', routerLink: '/orders' },
+          ]
+      }
     ];
   }
 }

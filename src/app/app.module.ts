@@ -22,24 +22,24 @@ import { HeaderComponent } from './admin/header/header.component';
 import { SliderComponent } from './admin/slider/slider.component';
 import { LeftMenuComponent } from './left-menu/left-menu.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
-import { MenuListComponent } from './admin/menu/menu-list/menu-list.component';
-import { MenuCreateComponent } from './admin/menu/menu-create/menu-create.component';
 import { OrdersListComponent } from './admin/orders/orders-list/orders-list.component';
+import { ProductsListComponent } from './admin/products/products-list/products-list.component';
 import { PartnersListComponent } from './admin/partners/partners-list/partners-list.component';
 import { CategoryListComponent } from './admin/categories/category-list/category-list.component';
+import { ProductsCreateComponent } from './admin/products/products-create/products-create.component';
 import { PartnersCreateComponent } from './admin/partners/partners-create/partners-create.component';
 import { CategoryCreateComponent } from './admin/categories/category-create/category-create.component';
 
 
 const appRoutes: Routes = [
-  { path: 'menu/list',   component: MenuListComponent, data: {'breadCrumbName':'Список пунктов меню', 'icon':'pi pi-list'} },
-  { path: 'menu/create', component: MenuCreateComponent, data: {'breadCrumbName':'Создать пункт меню', 'icon':'pi pi-plus'} },
-  { path: 'header',      component: HeaderComponent, data: {'breadCrumbName':'Шапка сайта'} },
-  { path: 'slider',      component: SliderComponent, data: {'breadCrumbName':''} },
+  { path: 'header', component: HeaderComponent, data: {'breadCrumbName':'Шапка сайта'} },
+  { path: 'slider', component: SliderComponent, data: {'breadCrumbName':''} },
   { path: 'orders', component: OrdersListComponent, data: {'breadCrumbName':'Заказы'} },
+  { path: 'products/list',   component: ProductsListComponent, data: {'breadCrumbName':'Список продуктов', 'icon':'pi pi-list'} },
+  { path: 'products/create', component: ProductsCreateComponent, data: {'breadCrumbName':'Создать продукт', 'icon':'pi pi-plus'} },
   { path: 'category/list',   component: CategoryListComponent, data: {'breadCrumbName':'Список категорий', 'icon':'pi pi-list' } },
   { path: 'category/create', component: CategoryCreateComponent, data: {'breadCrumbName':'Создать категорию', 'icon':'pi pi-plus' } },
-  { path: 'partners/list', component: PartnersListComponent, data: {'breadCrumbName':'Список партнеров', 'icon':'pi pi-plus' } },
+  { path: 'partners/list',   component: PartnersListComponent, data: {'breadCrumbName':'Список партнеров', 'icon':'pi pi-plus' } },
   { path: 'partners/create', component: PartnersCreateComponent, data: {'breadCrumbName':'Добавить партнера', 'icon':'pi pi-plus' } }
   // { path: '**', component: Page404Component },
 ];
@@ -51,16 +51,16 @@ const appRoutes: Routes = [
     SliderComponent,
     TopMenuComponent,
     LeftMenuComponent,
-    MenuListComponent,
-    MenuCreateComponent,
     OrdersListComponent,
     BreadcrumbComponent,
     OrdersListComponent,
+    ProductsListComponent,
     PartnersListComponent,
     CategoryListComponent,
     PartnersListComponent,
     CategoryCreateComponent,
-    PartnersCreateComponent
+    PartnersCreateComponent,
+    ProductsCreateComponent
   ],
   imports: [
     FormsModule,
