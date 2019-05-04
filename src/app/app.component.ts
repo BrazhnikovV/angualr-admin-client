@@ -18,6 +18,12 @@ export class AppComponent {
   private title: String = 'angular-admin-panel';
 
   /**
+   * @access private
+   * @var isLogged: boolean
+   */
+  private isLogged: boolean = false;
+
+  /**
    * constructor
    */
   constructor() {}

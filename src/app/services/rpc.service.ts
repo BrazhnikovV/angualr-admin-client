@@ -3,6 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
+/**
+ * @class - RpcService
+ * @classdesc - сервис для получения данных ...
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -28,10 +32,11 @@ export class RpcService {
 
   /**
    * getData - получить данные от сервера
-   * @param requestType - тип запроса
-   * @param data - массив данных для post - запроса
+   * @param String: requestType - тип запроса
+   * @param String: route - маршрут запроса
+   * @param Array<string> data - массив данных для post - запроса
    */
-  public getData( requestType: string, route: string, data: Array<string> = [] ) {
+  public getData( requestType: string, route: string, data: Array<string> = [] ): Observable<{} | HttpClient> {
 
     console.log(this.heroesUrl + route + this.token);
 

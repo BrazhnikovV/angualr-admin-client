@@ -17,6 +17,8 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 
 /** ==== Загружаем компоненты они должны быть подключены в разделе declarations директивы NgModule */
 import { AppComponent } from './app.component';
+import { LoginComponent } from './auth/login/login.component';
+import { LogoutComponent } from './auth/logout/logout.component';
 import { TopMenuComponent } from './top-menu/top-menu.component';
 import { HeaderComponent } from './admin/header/header.component';
 import { SliderComponent } from './admin/slider/slider.component';
@@ -47,6 +49,8 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
+    LogoutComponent,
     HeaderComponent,
     SliderComponent,
     TopMenuComponent,
