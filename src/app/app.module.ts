@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
@@ -17,6 +17,8 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 
 /** ==== Загружаем компоненты они должны быть подключены в разделе declarations директивы NgModule */
 import { AppComponent } from './app.component';
+import { MessageModule } from 'primeng/message';
+import { MessagesModule } from 'primeng/primeng';
 import { LoginComponent } from './auth/login/login.component';
 import { LogoutComponent } from './auth/logout/logout.component';
 import { TopMenuComponent } from './top-menu/top-menu.component';
@@ -31,6 +33,7 @@ import { CategoryListComponent } from './admin/categories/category-list/category
 import { ProductsCreateComponent } from './admin/products/products-create/products-create.component';
 import { PartnersCreateComponent } from './admin/partners/partners-create/partners-create.component';
 import { CategoryCreateComponent } from './admin/categories/category-create/category-create.component';
+import { ValidatorMessageComponent } from './validator-message/validator-message.component';
 
 
 const appRoutes: Routes = [
@@ -64,14 +67,17 @@ const appRoutes: Routes = [
     PartnersListComponent,
     CategoryCreateComponent,
     PartnersCreateComponent,
-    ProductsCreateComponent
+    ProductsCreateComponent,
+    ValidatorMessageComponent,
   ],
   imports: [
     FormsModule,
     TableModule,
+    ButtonModule,
     BrowserModule,
     TabMenuModule,
-    ButtonModule,
+    MessageModule,
+    MessagesModule,
     BreadcrumbModule,
     PanelMenuModule,
     InputTextModule,
@@ -79,7 +85,8 @@ const appRoutes: Routes = [
     InputTextareaModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

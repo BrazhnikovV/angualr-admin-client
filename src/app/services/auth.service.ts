@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
+import { User } from '../models/user';
 
 /**
  * @class - AuthService
@@ -21,7 +22,7 @@ export class AuthService {
    *  @access private
    *  @var string heroesUrl - url адрес rest api(rpc)
    */
-  private heroesUrl = 'http://shop-rest-api/v1/';
+  private heroesUrl = 'http://shop-rest-api/v1/login';
 
   /**
    * constructor
@@ -43,10 +44,13 @@ export class AuthService {
       })
     };
 
-    return this.http.post( this.heroesUrl, data, httpOptions ).pipe(
-      tap(response => {}),
-      catchError(response => this.handleError(data))
-    );
+    return this.http.post<User[]>( this.heroesUrl, data, httpOptions )
+      .pipe(
+        tap(response => {
+          console.log(response);
+        }),
+        catchError( this.handleError('Error Auth!') )
+      );
   }
 
   /**

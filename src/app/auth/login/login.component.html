@@ -1,28 +1,36 @@
 <div class="row mb-2">
   <div class="col-md-4 mt-2"></div>
   <div class="col-md-4 mt-2">
-    <h1>Аутентификация</h1>
-    <div class="ui-g ui-fluid">
-      <div class="ui-g-12 ui-md-12 m-0 p-0">
-        <div class="ui-inputgroup mb-2">
-          <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
-          <input type="text" pInputText placeholder="Логин">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+      <h1>Аутентификация</h1>
+      <div class="ui-g ui-fluid">
+        <div class="ui-g-12 ui-md-12 m-0 p-0">
+          <div *ngIf="loginForm.get('username').touched && loginForm.get('username').invalid" class="mb-2">
+            <app-validator-message [field]="loginForm.get('username')"></app-validator-message>
+          </div>
+          <div class="ui-inputgroup mb-2">
+            <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+            <input (keyup)="inputChange(validatorMessage)" type="text" pInputText required placeholder="Логин" formControlName="username">
+          </div>
         </div>
       </div>
-    </div>
-    <div class="ui-g ui-fluid">
-      <div class="ui-g-12 ui-md-12 m-0 p-0">
-        <div class="ui-inputgroup">
-          <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
-          <input type="password" pInputText placeholder="Пароль">
+      <div class="ui-g ui-fluid">
+        <div class="ui-g-12 ui-md-12 m-0 p-0">
+          <div *ngIf="loginForm.get('password').touched && loginForm.get('password').invalid" class="mb-2">
+            <app-validator-message [field]="loginForm.get('password')"></app-validator-message>
+          </div>
+          <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+            <input type="password" pInputText required placeholder="Пароль" formControlName="password">
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row mt-2">
-      <div class="col-md-12">
-        <button pButton type="button" label="Войти"></button>
+      <div class="row mt-2">
+        <div class="col-md-12">
+          <button pButton type="submit" label="Войти"></button>
+        </div>
       </div>
-    </div>
+    </form>
   </div>
   <div class="col-md-4 mt-2"></div>
 </div>
