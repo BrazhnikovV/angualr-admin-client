@@ -1,3 +1,5 @@
-<div *ngFor="let m of msgs">
-  <p-message severity="error"  text="{{m}}"></p-message>
+<div  *ngIf="field.touched && field.invalid" class="mb-2">
+  <div *ngFor="let m of msgs">
+    <p-message severity="error"  text="{{m}}"></p-message>
+  </div>
 </div>

@@ -15,20 +15,21 @@ export class ValidatorMessageComponent implements OnInit {
 
   /**
    *  @access private
-   *  @var field: FormControl -
+   *  @var field: FormControl - делегат от родительского компонента
+   *  для контроля валидации полей
    */
   @Input()
   private field: FormControl;
 
   /**
    *  @access private
-   *  @var msgs: Messages[] -
+   *  @var msgs: Messages[] - массив сообщений праймфэйсес(primefaces)
    */
   private msgs: Messages[] = [];
 
   /**
    *  @access private
-   *  @var msgCnf: {} -
+   *  @var msgCnf: {} - небор текстовых сообщений для различных видов валидации
    */
   private msgCnf: {} = {
     required: 'Field is required',
@@ -39,8 +40,7 @@ export class ValidatorMessageComponent implements OnInit {
   /**
    * constructor
    */
-  constructor() {
-  }
+  constructor() {}
 
   /**
    * ngOnInit
@@ -48,7 +48,8 @@ export class ValidatorMessageComponent implements OnInit {
   ngOnInit() {}
 
   /**
-   * ngOnChanges
+   * ngOnChanges - перехватываем событие изменения компонента
+   * @return void
    */
   public ngOnChanges() {
     const field = this.field;
@@ -68,12 +69,5 @@ export class ValidatorMessageComponent implements OnInit {
     Object.keys( field.errors ).forEach( ( error: string ) => {
       this.msgs.push(this.msgCnf[error]);
     });
-
-    console.log('this.field.errors => ', this.field.errors);
-    console.log('this.msgs => ', this.msgs);
-  }
-
-  public testHui() {
-    console.log('testHui => testHui');
   }
 }
