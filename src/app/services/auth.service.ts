@@ -32,7 +32,7 @@ export class AuthService {
 
   /**
    * login - выпонить аутентификацию на сервере
-   * @param reqData -
+   * @param reqData - данные для передачи в запросе
    * @return Observable<boolean>
    */
   public login( reqData ): Observable<{} | HttpClient>  {
