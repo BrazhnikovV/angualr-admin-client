@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
-import { User } from '../models/user';
+import { Observable, throwError } from 'rxjs';
 
 /**
  * @class - AuthService
@@ -14,15 +14,15 @@ export class AuthService {
 
   /**
    *  @access private
-   *  @var isLogged: boolean | null -
+   *  @var isLogged: boolean - статус аутентификации пользователя
    */
-  private isLogged: boolean | null = null;
+  private isLogged: boolean = false;
 
   /**
    *  @access private
-   *  @var string heroesUrl - url адрес rest api(rpc)
+   *  @var string apiUrl - url адрес rest api(rpc)
    */
-  private heroesUrl = 'http://shop-rest-api/v1/login';
+  private apiUrl = 'http://shop-rest-api/v1/user/login';
 
   /**
    * constructor
@@ -31,46 +31,35 @@ export class AuthService {
   constructor( private http: HttpClient ) {}
 
   /**
-   * login
-   * @param credentials - полномочия
+   * login - выпонить аутентификацию на сервере
+   * @param reqData -
    * @return Observable<boolean>
    */
-  public login( credentials ) {
-    const data: string = JSON.stringify( credentials );
-
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json'
-      })
-    };
-
-    return this.http.post<User[]>( this.heroesUrl, data, httpOptions )
+  public login( reqData ): Observable<{} | HttpClient>  {
+    return this.http.post( this.apiUrl, reqData )
       .pipe(
         tap(response => {
-          console.log(response);
+          this.isLogged = true;
         }),
-        catchError( this.handleError('Error Auth!') )
+        catchError( error => {
+          return throwError( error );
+        })
       );
   }
 
   /**
-   * logout
+   * logout - выполнить выход из приложения
    * @return boolean
    */
   public logout(): boolean {
-    // !Fixme ...
-    return true;
+    return this.isLogged = false;
   }
 
   /**
-   * getIsLogged
+   * getIsLogged - получить состояние аутентификации пользователя
    * @return boolean
    */
   public getIsLogged(): boolean {
     return this.isLogged;
-  }
-
-  private handleError(data: string) {
-    return undefined;
   }
 }

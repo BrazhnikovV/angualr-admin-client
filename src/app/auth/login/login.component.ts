@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChildren, QueryList} from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { User } from 'src/app/models/user';
 import { ValidatorMessageComponent } from '../../validator-message/validator-message.component';
+import { AuthService } from '../../services/auth.service';
 
 /**
  * @class - LoginComponent
@@ -13,12 +13,6 @@ import { ValidatorMessageComponent } from '../../validator-message/validator-mes
   styleUrls: ['./login.component.sass']
 })
 export class LoginComponent implements OnInit {
-
-  /**
-   *  @access private
-   *  @var user: User - модель пользователя
-   */
-  private user: User;
 
   /**
    * @access private
@@ -45,10 +39,13 @@ export class LoginComponent implements OnInit {
     ])
   });
 
+  private errors: [];
+
   /**
    * constructor
+   * @param authService: AuthService - сервис для выполнения запроса на аутентификацию
    */
-  constructor() {}
+  constructor( private authService: AuthService ) {}
 
   /**
    * ngOnInit
@@ -62,7 +59,10 @@ export class LoginComponent implements OnInit {
    */
   onSubmit() {
     console.log('### LoginComponent => onSubmit()');
-    console.log(this.loginForm);
+
+    this.authService.login( this.loginForm.value ).subscribe(
+      response => { this.handleResponse( response ) },error => { this.handleError( error ) }
+    );
   }
 
   /**
@@ -71,5 +71,24 @@ export class LoginComponent implements OnInit {
    */
   inputChange() {
     this.viewChildren.forEach( child => child.ngOnChanges());
+  }
+
+  /**
+   * handleError - обработать ошибку получения/отправки данных
+   * @param error - данные об ошибке
+   */
+  private handleError( response: any ) {
+    console.log('### LoginComponent => handleError()');
+    console.log('error data:', response);
+    this.errors = response.error;
+  }
+
+  /**
+   * handleResponse -
+   * @param response - данные об ошибке
+   */
+  private handleResponse( response: any ) {
+    console.log('### LoginComponent => handleResponse()');
+    console.log('response data:', response);
   }
 }

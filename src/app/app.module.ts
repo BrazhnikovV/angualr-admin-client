@@ -34,6 +34,7 @@ import { ProductsCreateComponent } from './admin/products/products-create/produc
 import { PartnersCreateComponent } from './admin/partners/partners-create/partners-create.component';
 import { CategoryCreateComponent } from './admin/categories/category-create/category-create.component';
 import { ValidatorMessageComponent } from './validator-message/validator-message.component';
+import { ValidatorNetworkComponent } from './validator-network/validator-network.component';
 
 
 const appRoutes: Routes = [
@@ -69,6 +70,7 @@ const appRoutes: Routes = [
     PartnersCreateComponent,
     ProductsCreateComponent,
     ValidatorMessageComponent,
+    ValidatorNetworkComponent,
   ],
   imports: [
     FormsModule,

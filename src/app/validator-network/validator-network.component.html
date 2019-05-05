@@ -1,0 +1,7 @@
+<div class="row mb-2">
+  <div class="col-md-12 mt-2">
+    <div *ngFor="let m of msgs">
+      <p-message severity="error"  text="<b>{{m.field}}</b> : {{m.message}}"></p-message>
+    </div>
+  </div>
+</div>

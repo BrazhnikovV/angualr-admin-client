@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from './services/auth.service';
 
 /**
  * @class - AppComponent
@@ -18,15 +19,29 @@ export class AppComponent {
   private title: String = 'angular-admin-panel';
 
   /**
-   * @access private
-   * @var isLogged: boolean
+   * constructor
+   * @param authService: AuthService - сервис аутентификации
    */
-  private isLogged: boolean = false;
+  constructor( private authService: AuthService ) {}
 
   /**
-   * constructor
+   * ngOnInit
    */
-  constructor() {}
-
   ngOnInit() {}
+
+  /**
+   * isLogged - выполнить fentynbabrfwb.
+   * @return boolean
+   */
+  private isLogged(): boolean {
+    return this.authService.getIsLogged();
+  }
+
+  /**
+   * logout - выполнить выход из приложения
+   * @return boolean
+   */
+  private logout(): boolean {
+    return this.authService.logout();
+  }
 }
