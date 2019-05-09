@@ -35,6 +35,7 @@ export class BreadcrumbComponent implements OnInit {
 
   ngOnInit() {
     this.listenRouting();
+    this.init();
   }
 
   /**

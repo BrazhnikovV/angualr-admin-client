@@ -39,6 +39,10 @@ export class LoginComponent implements OnInit {
     ])
   });
 
+  /**
+   *  @access private
+   *  @var errors: [] - массив ошибок, полученных при аутентификации
+   */
   private errors: [];
 
   /**
@@ -70,7 +74,7 @@ export class LoginComponent implements OnInit {
    * @return void
    */
   inputChange() {
-    this.viewChildren.forEach( child => child.ngOnChanges());
+    this.viewChildren.forEach( child => child.ngOnChanges() );
   }
 
   /**
