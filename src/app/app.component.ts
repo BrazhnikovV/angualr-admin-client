@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from './services/auth.service';
+import { Router } from '@angular/router';
+
 
 /**
  * @class - AppComponent
@@ -22,12 +24,14 @@ export class AppComponent {
    * constructor
    * @param authService: AuthService - сервис аутентификации
    */
-  constructor( private authService: AuthService ) {}
+  constructor( private authService: AuthService, private router: Router ) {}
 
   /**
    * ngOnInit
    */
-  ngOnInit() {}
+  ngOnInit() {
+
+  }
 
   /**
    * isLogged - выполнить fentynbabrfwb.
@@ -41,7 +45,8 @@ export class AppComponent {
    * logout - выполнить выход из приложения
    * @return boolean
    */
-  private logout(): boolean {
+  private logout(): void {
+    this.router.navigate(['/']);
     return this.authService.logout();
   }
 }

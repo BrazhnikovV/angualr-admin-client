@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChildren, QueryList} from '@angular/core';
+import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ValidatorMessageComponent } from '../../validator-message/validator-message.component';
 import { AuthService } from '../../services/auth.service';
