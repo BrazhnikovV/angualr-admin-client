@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { CookiesService } from '@ngx-utils/cookies';
-import { Router } from '@angular/router';
 
 /**
  * @class - AuthService
@@ -30,7 +29,7 @@ export class AuthService {
    * constructor
    * @param http - объект для работы с http
    */
-  constructor( private http: HttpClient, private cookieService: CookiesService, private router: Router ) {}
+  constructor( private http: HttpClient, private cookieService: CookiesService ) {}
 
   /**
    * login - выпонить аутентификацию на сервере
@@ -42,7 +41,6 @@ export class AuthService {
         .pipe(
           tap(response => {
             this.cookieService.put('token', response.toString() );
-            this.router.navigate(['/']);
           }),
           catchError( error => {
             return throwError( error );
