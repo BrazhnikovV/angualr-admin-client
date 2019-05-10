@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RpcService } from '../../../services/rpc.service';
+import { Category } from '../../../models/category';
 
 /**
  * @class - CategoryListComponent
@@ -20,10 +21,10 @@ export class CategoryListComponent implements OnInit {
   private checked: boolean;
 
   /**
-   * @access public
-   * @var categories: []
+   * @access private
+   * @var categories: Category
    */
-  public categories: [];
+  private categories: Category[];
 
   /**
    * constructor
@@ -31,13 +32,18 @@ export class CategoryListComponent implements OnInit {
    */
   constructor( private rpcService: RpcService ) {}
 
+  /**
+   * onClickMe
+   */
   onClickMe() {
     console.log('You are my hero!');
   }
 
+  /**
+   * ngOnInit
+   */
   ngOnInit() {
-    this.rpcService.getData('get', 'categories' ).subscribe((response) => {
-      // @ts-ignore
+    this.rpcService.getCategories().subscribe(( response ) => {
       this.categories = response;
     });
   }

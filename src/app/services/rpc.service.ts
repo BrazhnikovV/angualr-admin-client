@@ -2,21 +2,20 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { Category } from '../models/category';
 
 /**
  * @class - RpcService
  * @classdesc - сервис для получения данных ...
  */
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class RpcService {
 
   /**
    *  @access private
    *  @var string heroesUrl - url адрес rest api(rpc)
    */
-  private heroesUrl = 'http://shop-rest-api/v1/';
+  private apiUrl = 'http://shop-rest-api/v1/';
 
   /**
    *  @access private
@@ -24,11 +23,13 @@ export class RpcService {
    */
   private token = '?access-token=9zfb5fKB4f9rAC-b_HEawN6dSGLO0Krh';
 
+  private categories: Category[];
+
   /**
    * constructor - конструктор
    * @param http - объект для работы с http
    */
-  constructor( private http: HttpClient ) {}
+  constructor( private http: HttpClient) {}
 
   /**
    * getData - получить данные от сервера
@@ -38,19 +39,29 @@ export class RpcService {
    */
   public getData( requestType: string, route: string, data: Array<string> = [] ): Observable<{} | HttpClient> {
 
-    console.log(this.heroesUrl + route + this.token);
+    console.log(this.apiUrl + route + this.token);
 
     if ( requestType === 'post' ) {
-      return this.http.post( this.heroesUrl + route + this.token, data ).pipe(
+      return this.http.post( this.apiUrl + route + this.token, data ).pipe(
         tap(response => {}),
         catchError(response => this.handleError(data))
       );
     } else {
-      return this.http.get( this.heroesUrl + route + this.token ).pipe(
+      return this.http.get( this.apiUrl + route + this.token ).pipe(
         tap(response => {}),
         catchError(response => this.handleError(data))
       );
     }
+  }
+
+  /**
+   * getCategories - получить данные от сервера
+   */
+  public getCategories(): Observable<any> {
+    return this.http.get<Category[]>( this.apiUrl + 'categories' + this.token ).pipe(
+      tap(response => {}),
+      catchError(response => this.handleError( response ) )
+    );
   }
 
   /**

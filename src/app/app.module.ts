@@ -6,6 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserCookiesModule } from '@ngx-utils/cookies/browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { ButtonModule } from 'primeng/button';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
@@ -127,6 +128,7 @@ const appRoutes: Routes = [
     BreadcrumbModule,
     PanelMenuModule,
     InputTextModule,
+    ScrollPanelModule,
     InputSwitchModule,
     InputTextareaModule,
     HttpClientModule,
