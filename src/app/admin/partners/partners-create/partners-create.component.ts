@@ -86,7 +86,9 @@ export class PartnersCreateComponent implements OnInit {
   /**
    * ngOnInit
    */
-  ngOnInit() {}
+  ngOnInit() {
+    this.partnerForm.get('hidden').setValue(false );
+  }
 
   /**
    * handleError - обработать ошибку получения/отправки данных

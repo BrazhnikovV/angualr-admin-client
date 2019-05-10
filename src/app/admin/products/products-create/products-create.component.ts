@@ -91,7 +91,9 @@ export class ProductsCreateComponent implements OnInit {
   /**
    * ngOnInit
    */
-  ngOnInit() {}
+  ngOnInit() {
+    this.productForm.get('hidden').setValue(false );
+  }
 
   /**
    * handleError - обработать ошибку получения/отправки данных

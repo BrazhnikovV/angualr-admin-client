@@ -80,7 +80,9 @@ export class CategoryCreateComponent implements OnInit {
   /**
    * ngOnInit
    */
-  ngOnInit() {}
+  ngOnInit() {
+    this.categoryForm.get('hidden').setValue(false );
+  }
 
   /**
    * handleError - обработать ошибку получения/отправки данных
