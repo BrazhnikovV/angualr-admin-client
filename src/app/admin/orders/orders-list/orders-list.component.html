@@ -1,9 +1,9 @@
 <div class="row mt-2">
   <div class="col-md-12">
-    <p-table [value]="orders">
+    <p-table [value]="orders" [paginator]="true" [rows]="5">
       <ng-template pTemplate="header">
         <tr>
-          <th>ID</th>
+          <th [ngClass]="{'th-btn':true}">ID</th>
           <th>UserID</th>
           <th>Name</th>
           <th>Description</th>
