@@ -16,7 +16,7 @@
           <tr>
             <td>{{category?.id}}</td>
             <td>{{category?.name}}</td>
-            <td>{{category?.description}}</td>
+            <td>{{category?.description | slice:0:30 }}</td>
             <td>{{category?.hidden}}</td>
             <td>{{category?.nesting}}</td>
             <td>{{category?.created_at}}</td>
