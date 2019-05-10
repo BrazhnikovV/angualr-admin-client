@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
-import {Observable, throwError} from 'rxjs';
+import { Observable, throwError} from 'rxjs';
 import { Category } from '../models/category';
+import { Product } from '../models/product';
+import { Partner } from '../models/partner';
+import { Order } from '../models/order';
 
 /**
  * @class - RpcService
@@ -73,6 +76,36 @@ export class RpcService {
       catchError(error => {
         return throwError( error );
       })
+    );
+  }
+
+  /**
+   * getProducts - получить данные от сервера
+   */
+  public getProducts(): Observable<any> {
+    return this.http.get<Product[]>( this.apiUrl + 'products' + this.token ).pipe(
+      tap(response => {}),
+      catchError(response => this.handleError( response ) )
+    );
+  }
+
+  /**
+   * getPartners - получить данные от сервера
+   */
+  public getPartners(): Observable<any> {
+    return this.http.get<Partner[]>( this.apiUrl + 'partners' + this.token ).pipe(
+      tap(response => {}),
+      catchError(response => this.handleError( response ) )
+    );
+  }
+
+  /**
+   * getOrders - получить данные от сервера
+   */
+  public getOrders(): Observable<any> {
+    return this.http.get<Order[]>( this.apiUrl + 'orders' + this.token ).pipe(
+      tap(response => {}),
+      catchError(response => this.handleError( response ) )
     );
   }
 

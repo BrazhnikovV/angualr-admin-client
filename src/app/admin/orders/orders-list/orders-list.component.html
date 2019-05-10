@@ -1,24 +1,26 @@
 <div class="row mt-2">
   <div class="col-md-12">
-    <p-table [value]="items">
+    <p-table [value]="orders">
       <ng-template pTemplate="header">
         <tr>
           <th>ID</th>
+          <th>UserID</th>
           <th>Name</th>
           <th>Description</th>
-          <th>Hidden</th>
-          <th>Nesting</th>
+          <th>Price</th>
+          <th>Status</th>
           <th>Created</th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-category>
+      <ng-template pTemplate="body" let-order>
         <tr>
-          <td>{{category?.id}}</td>
-          <td>{{category?.name}}</td>
-          <td>{{category?.description}}</td>
-          <td>{{category?.hidden}}</td>
-          <td>{{category?.nesting}}</td>
-          <td>{{category?.created_at}}</td>
+          <td>{{order?.id}}</td>
+          <td>{{order?.author.id}}</td>
+          <td>{{order?.name}}</td>
+          <td>{{order?.description}}</td>
+          <td>{{order?.price}}</td>
+          <td>{{order?.status}}</td>
+          <td>{{order?.created_at}}</td>
         </tr>
       </ng-template>
     </p-table>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {RpcService} from 'src/app/services/rpc.service';
+import { RpcService } from 'src/app/services/rpc.service';
+import { Product } from '../../../models/product';
 
 /**
  * @class - ProductsListComponent
@@ -22,7 +23,7 @@ export class ProductsListComponent implements OnInit {
    * @access public
    * @var products: []
    */
-  public products: [];
+  public products: Product[];
 
   /**
    * constructor
@@ -30,5 +31,19 @@ export class ProductsListComponent implements OnInit {
    */
   constructor( private rpcService: RpcService ) {}
 
-  ngOnInit() {}
+  /**
+   * onClickMe
+   */
+  onClickMe() {
+    console.log('You are my hero!');
+  }
+
+  /**
+   * ngOnInit
+   */
+  ngOnInit() {
+    this.rpcService.getProducts().subscribe(( response ) => {
+      this.products = response;
+    });
+  }
 }
