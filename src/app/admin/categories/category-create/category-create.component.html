@@ -1,23 +1,38 @@
-<div class="row mb-2">
-  <div class="col-md-6 mt-2">
-    <div class="ui-g ui-fluid">
-      <div class="ui-g-12 ui-md-12 m-0 p-0">
-        <div class="ui-inputgroup">
-          <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
-          <input type="text" pInputText placeholder="Название категории">
+<div [ngClass]="{ 'hidden' : !errors }">
+  <app-validator-network [msgs]="errors"></app-validator-network>
+</div>
+<form [formGroup]="categoryForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+  <div class="row mb-2">
+    <div class="col-md-6 mt-2">
+      <div class="ui-g ui-fluid">
+        <div class="ui-g-12 ui-md-12 m-0 p-0">
+          <app-validator-message [field]="categoryForm.get('name')"></app-validator-message>
+          <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+            <input (keyup)="inputChange()" type="text" pInputText placeholder="Название категории" formControlName="name">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 mt-2">
+      <span class="label-top">Видимость : </span>
+      <p-inputSwitch formControlName="hidden"></p-inputSwitch>
+    </div>
+  </div>
+  <div class="row mb-2">
+    <div class="col-md-12 mt-2">
+      <div class="ui-g ui-fluid">
+        <div class="ui-g-12 ui-md-12 m-0 p-0">
+          <app-validator-message [field]="categoryForm.get('description')"></app-validator-message>
+          <textarea (keyup)="inputChange()" rows="5" class="ui-md-12" placeholder="Введите описание категории" formControlName="description" pInputTextarea></textarea>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-md-6 mt-2">
-    <span class="label-top">Видимость : </span>
-    <p-inputSwitch [(ngModel)]="checked"></p-inputSwitch>
-  </div>
-</div>
-<div class="row mb-2">
-  <div class="col-md-12 mt-2">
-    <div class="ui-g ui-fluid">
-      <textarea rows="5" class="ui-md-12" placeholder="Введите описание категории" pInputTextarea></textarea>
+  <div class="row mt-2">
+    <div class="col-md-12">
+      <button *ngIf="categoryForm.invalid" pButton type="submit" disabled label="Создать категорию"></button>
+      <button *ngIf="categoryForm.valid" pButton type="submit" label="Создать категорию"></button>
     </div>
   </div>
-</div>
+</form>

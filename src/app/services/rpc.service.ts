@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import {Observable, throwError} from 'rxjs';
 import { Category } from '../models/category';
 
 /**
@@ -61,6 +61,18 @@ export class RpcService {
     return this.http.get<Category[]>( this.apiUrl + 'categories' + this.token ).pipe(
       tap(response => {}),
       catchError(response => this.handleError( response ) )
+    );
+  }
+
+  /**
+   * postCategory -
+   */
+  public postCategory(  data: Array<string> = [] ): Observable<any> {
+    return this.http.post<Category[]>( this.apiUrl + 'categories' + this.token, data ).pipe(
+      tap(response => {}),
+      catchError(error => {
+        return throwError( error );
+      })
     );
   }
 
