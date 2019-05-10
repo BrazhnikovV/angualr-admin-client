@@ -112,6 +112,18 @@ export class RpcService {
   }
 
   /**
+   * postProduct -
+   */
+  public postPartner(  data: Array<string> = [] ): Observable<any> {
+    return this.http.post<Partner[]>( this.apiUrl + 'partners' + this.token, data ).pipe(
+      tap(response => {}),
+      catchError(error => {
+        return throwError( error );
+      })
+    );
+  }
+
+  /**
    * getOrders - получить данные от сервера
    */
   public getOrders(): Observable<any> {
