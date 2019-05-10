@@ -80,6 +80,18 @@ export class RpcService {
   }
 
   /**
+   * postProduct -
+   */
+  public postProduct(  data: Array<string> = [] ): Observable<any> {
+    return this.http.post<Product[]>( this.apiUrl + 'products' + this.token, data ).pipe(
+      tap(response => {}),
+      catchError(error => {
+        return throwError( error );
+      })
+    );
+  }
+
+  /**
    * getProducts - получить данные от сервера
    */
   public getProducts(): Observable<any> {
