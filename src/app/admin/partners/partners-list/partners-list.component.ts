@@ -28,7 +28,7 @@ export class PartnersListComponent implements OnInit {
     { field: 'name', header: 'Name', class: '' },
     { field: 'description', header: 'Description', class: '' },
     { field: 'hidden', header: 'Hidden', class: '' },
-    { field: 'created', header: 'Created', class: '' }
+    { field: 'created_at', header: 'Created', class: '' }
   ];
 
   /**

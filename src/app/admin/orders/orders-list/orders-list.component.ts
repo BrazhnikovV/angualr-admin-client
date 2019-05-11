@@ -31,7 +31,7 @@ export class OrdersListComponent implements OnInit {
     { field: 'price', header: 'Price', class: '' },
     { field: 'status', header: 'Status', class: '' },
     { field: 'hidden', header: 'Hidden', class: '' },
-    { field: 'created', header: 'Created', class: '' }
+    { field: 'created_at', header: 'Created', class: '' }
   ];
 
   /**

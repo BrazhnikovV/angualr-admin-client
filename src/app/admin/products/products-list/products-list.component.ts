@@ -36,7 +36,7 @@ export class ProductsListComponent implements OnInit {
     { field: 'price', header: 'Price', class: '' },
     { field: 'code', header: 'Code', class: '' },
     { field: 'hidden', header: 'Hidden', class: '' },
-    { field: 'created', header: 'Created', class: '' }
+    { field: 'created_at', header: 'Created', class: '' }
   ];
 
   /**

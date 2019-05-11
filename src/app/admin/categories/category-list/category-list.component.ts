@@ -42,7 +42,7 @@ export class CategoryListComponent implements OnInit {
     { field: 'description', header: 'Description', class: '' },
     { field: 'hidden', header: 'Hidden', class: '' },
     { field: 'nesting', header: 'Nesting', class: '' },
-    { field: 'created', header: 'Created', class: '' }
+    { field: 'created_at', header: 'Created', class: '' }
   ];
 
   /**
