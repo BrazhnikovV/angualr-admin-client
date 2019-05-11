@@ -14,10 +14,25 @@ import { Order } from '../../../models/order';
 export class OrdersListComponent implements OnInit {
 
   /**
-   * @access public
+   * @access private
    * @var items: []
    */
-  public orders: Order[];
+  private orders: Order[];
+
+  /**
+   * @access private
+   * @var cols: []
+   */
+  private cols = [
+    { field: 'id', header: 'ID', class: 'th-btn' },
+    { field: 'user_id', header: 'UserID', class: '' },
+    { field: 'name', header: 'Name', class: '' },
+    { field: 'description', header: 'Description', class: '' },
+    { field: 'price', header: 'Price', class: '' },
+    { field: 'status', header: 'Status', class: '' },
+    { field: 'hidden', header: 'Hidden', class: '' },
+    { field: 'created', header: 'Created', class: '' }
+  ];
 
   /**
    * constructor

@@ -33,6 +33,19 @@ export class CategoryListComponent implements OnInit {
   constructor( private rpcService: RpcService ) {}
 
   /**
+   * @access private
+   * @var cols: []
+   */
+  private cols = [
+    { field: 'id', header: 'ID', class: 'th-btn' },
+    { field: 'name', header: 'Name', class: '' },
+    { field: 'description', header: 'Description', class: '' },
+    { field: 'hidden', header: 'Hidden', class: '' },
+    { field: 'nesting', header: 'Nesting', class: '' },
+    { field: 'created', header: 'Created', class: '' }
+  ];
+
+  /**
    * onClickMe
    */
   onClickMe() {

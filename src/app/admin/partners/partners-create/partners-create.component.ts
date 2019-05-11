@@ -46,7 +46,6 @@ export class PartnersCreateComponent implements OnInit {
     ]),
     url: new FormControl('' ,[
       Validators.required,
-      Validators.email,
       Validators.minLength(4 ),
       Validators.maxLength(128 )
     ]),

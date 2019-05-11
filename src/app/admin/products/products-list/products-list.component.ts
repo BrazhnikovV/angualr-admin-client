@@ -20,10 +20,24 @@ export class ProductsListComponent implements OnInit {
   private checked: boolean;
 
   /**
-   * @access public
+   * @access private
    * @var products: []
    */
-  public products: Product[];
+  private products: Product[];
+
+  /**
+   * @access private
+   * @var cols: []
+   */
+  private cols = [
+    { field: 'id', header: 'ID', class: 'th-btn' },
+    { field: 'name', header: 'Name', class: '' },
+    { field: 'description', header: 'Description', class: '' },
+    { field: 'price', header: 'Price', class: '' },
+    { field: 'code', header: 'Code', class: '' },
+    { field: 'hidden', header: 'Hidden', class: '' },
+    { field: 'created', header: 'Created', class: '' }
+  ];
 
   /**
    * constructor

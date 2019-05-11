@@ -1,28 +1,23 @@
 <div class="row mt-2">
   <div class="col-md-12">
-    <p-table [value]="orders" [paginator]="true" [rows]="5">
-      <ng-template pTemplate="header">
-        <tr>
-          <th [ngClass]="{'th-btn':true}">ID</th>
-          <th>UserID</th>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Price</th>
-          <th>Status</th>
-          <th>Created</th>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-order>
-        <tr>
-          <td>{{order?.id}}</td>
-          <td>{{order?.author.id}}</td>
-          <td>{{order?.name}}</td>
-          <td>{{order?.description}}</td>
-          <td>{{order?.price}}</td>
-          <td>{{order?.status}}</td>
-          <td>{{order?.created_at}}</td>
-        </tr>
-      </ng-template>
-    </p-table>
+    <p-scrollPanel [style]="{width: '100%'}">
+      <p-table [columns]="cols" [value]="orders" [paginator]="true" [rows]="5">
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th *ngFor="let col of columns" [pSortableColumn]="col.field"  class="{{col.class}}">
+              {{col.header}}
+              <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+          <tr>
+            <td *ngFor="let col of columns">
+              {{ rowData[col.field] }}
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-scrollPanel>
   </div>
 </div>

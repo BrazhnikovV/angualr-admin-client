@@ -14,10 +14,22 @@ import { Partner } from 'src/app/models/partner';
 export class PartnersListComponent implements OnInit {
 
   /**
-   * @access public
+   * @access private
    * @var products: []
    */
-  public partners: Partner[];
+  private partners: Partner[];
+
+  /**
+   * @access private
+   * @var cols: []
+   */
+  private cols = [
+    { field: 'id', header: 'ID', class: 'th-btn' },
+    { field: 'name', header: 'Name', class: '' },
+    { field: 'description', header: 'Description', class: '' },
+    { field: 'hidden', header: 'Hidden', class: '' },
+    { field: 'created', header: 'Created', class: '' }
+  ];
 
   /**
    * constructor
