@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, QueryList, ViewChildren} from '@angular/core';
 import { RpcService } from 'src/app/services/rpc.service';
 import { Product } from '../../../models/product';
+import {Partner} from '../../../models/partner';
+import {TableEntityComponent} from '../../../table-entity/table-entity.component';
 
 /**
  * @class - ProductsListComponent
@@ -12,6 +14,13 @@ import { Product } from '../../../models/product';
   styleUrls: ['./products-list.component.sass']
 })
 export class ProductsListComponent implements OnInit {
+
+  /**
+   * @access private
+   * @var viewChildren: QueryList<DialogEntityComponent<T>> - объект для управления дочернеми компонентами
+   */
+  @ViewChildren( TableEntityComponent )
+  private viewChildren: QueryList<TableEntityComponent<Partner>>;
 
   /**
    * @access private
@@ -84,6 +93,20 @@ export class ProductsListComponent implements OnInit {
    */
   private save() {
     console.log('### ProductsListComponent => save()');
+
+    let entity: Partner = this.viewChildren.first.entity;
+    let id: number = entity.id;
+
+    if ( this.viewChildren.first.newEntity ) {
+      this.rpcService.postProduct(entity).subscribe(( response ) => {
+        console.log(response);
+      });
+    }
+    else {
+      this.rpcService.putProduct( entity, id ).subscribe(( response ) => {
+        console.log(response);
+      });
+    }
   }
 
   /**
@@ -92,5 +115,10 @@ export class ProductsListComponent implements OnInit {
    */
   private delete() {
     console.log('### ProductsListComponent => delete()');
+
+    let id: number = this.viewChildren.first.entity.id;
+    this.rpcService.deleteProduct( id ).subscribe(( response ) => {
+      console.log(response);
+    });
   }
 }

@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, QueryList, ViewChildren} from '@angular/core';
 import { RpcService } from '../../../services/rpc.service';
 import { Category } from '../../../models/category';
+import {Partner} from '../../../models/partner';
+import {TableEntityComponent} from '../../../table-entity/table-entity.component';
 
 /**
  * @class - CategoryListComponent
@@ -13,6 +15,13 @@ import { Category } from '../../../models/category';
   providers: [RpcService]
 })
 export class CategoryListComponent implements OnInit {
+
+  /**
+   * @access private
+   * @var viewChildren: QueryList<DialogEntityComponent<T>> - объект для управления дочернеми компонентами
+   */
+  @ViewChildren( TableEntityComponent )
+  private viewChildren: QueryList<TableEntityComponent<Partner>>;
 
   /**
    * @access private
@@ -83,6 +92,20 @@ export class CategoryListComponent implements OnInit {
    */
   private save() {
     console.log('### CategoryListComponent => save()');
+
+    let entity: Partner = this.viewChildren.first.entity;
+    let id: number = entity.id;
+
+    if ( this.viewChildren.first.newEntity ) {
+      this.rpcService.postCategory(entity).subscribe(( response ) => {
+        console.log(response);
+      });
+    }
+    else {
+      this.rpcService.putCategory( entity, id ).subscribe(( response ) => {
+        console.log(response);
+      });
+    }
   }
 
   /**
@@ -91,5 +114,10 @@ export class CategoryListComponent implements OnInit {
    */
   private delete() {
     console.log('### CategoryListComponent => delete()');
+
+    let id: number = this.viewChildren.first.entity.id;
+    this.rpcService.deleteCategory( id ).subscribe(( response ) => {
+      console.log(response);
+    });
   }
 }

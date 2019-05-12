@@ -47,11 +47,41 @@ export class RpcService {
 
   /**
    * postCategory - создать категорию
-   * @param data: Array<string> - массив данных для отправки на сервер
+   * @param data: any - массив данных для отправки на сервер
    * @return Observable<any> | throwError( error )
    */
-  public postCategory(  data: Array<string> = [] ): Observable<any> {
+  public postCategory(  data: any ): Observable<any> {
     return this.http.post<Category[]>( this.apiUrl + 'categories' + this.token, data ).pipe(
+      tap(response => {}),
+      catchError(error => {
+        return throwError( error );
+      })
+    );
+  }
+
+  /**
+   * putCategory - обновить категорию
+   * @param data: any - объект данных для отправки на сервер
+   * @param id: number - идентификатор записи
+   * @return Observable<any> | throwError( error )
+   */
+  public putCategory(  data: {}, id: number ): Observable<any> {
+    return this.http.put<Category[]>( this.apiUrl + 'categories/' + id + this.token, data ).pipe(
+      tap(response => {}),
+      catchError(error => {
+        return throwError( error );
+      })
+    );
+  }
+
+  /**
+   * deleteCategory - удалить категорию
+   * @param data: any - объект данных для отправки на сервер
+   * @param id: number - идентификатор записи
+   * @return Observable<any> | throwError( error )
+   */
+  public deleteCategory( id: number ): Observable<any> {
+    return this.http.delete<Category[]>( this.apiUrl + 'categories/' + id + this.token ).pipe(
       tap(response => {}),
       catchError(error => {
         return throwError( error );
@@ -77,8 +107,37 @@ export class RpcService {
    * @param data: Array<string> - массив данных для отправки на сервер
    * @return Observable<any> | throwError( error )
    */
-  public postProduct(  data: Array<string> = [] ): Observable<any> {
+  public postProduct(  data: any ): Observable<any> {
     return this.http.post<Product[]>( this.apiUrl + 'products' + this.token, data ).pipe(
+      tap(response => {}),
+      catchError(error => {
+        return throwError( error );
+      })
+    );
+  }
+
+  /**
+   * putProduct - обновить продукт
+   * @param data: Array<string> - массив данных для отправки на сервер
+   * @param id: number - идентификатор записи
+   * @return Observable<any> | throwError( error )
+   */
+  public putProduct(  data: {}, id: number ): Observable<any> {
+    return this.http.put<Product[]>( this.apiUrl + 'products/' + id + this.token, data ).pipe(
+      tap(response => {}),
+      catchError(error => {
+        return throwError( error );
+      })
+    );
+  }
+
+  /**
+   * deleteProduct - удалить продукт
+   * @param id: number - идентификатор записи
+   * @return Observable<any> | throwError( error )
+   */
+  public deleteProduct( id: number ): Observable<any> {
+    return this.http.delete<Product[]>( this.apiUrl + 'products/' + id + this.token ).pipe(
       tap(response => {}),
       catchError(error => {
         return throwError( error );
@@ -101,7 +160,7 @@ export class RpcService {
 
   /**
    * postPartner - создать партнера
-   * @param data: Array<string> - массив данных для отправки на сервер
+   * @param data: any - массив данных для отправки на сервер
    * @return Observable<any> | throwError( error )
    */
   public postPartner(  data: any ): Observable<any> {
