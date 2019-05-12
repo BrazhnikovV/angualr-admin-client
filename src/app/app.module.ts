@@ -1,5 +1,6 @@
 /** ==== Загружаем модули они должны быть подключены в разделе imports директивы NgModule */
 import { NgModule } from '@angular/core';
+import { DialogModule } from 'primeng/dialog';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
@@ -38,6 +39,8 @@ import { PartnersCreateComponent } from './admin/partners/partners-create/partne
 import { CategoryCreateComponent } from './admin/categories/category-create/category-create.component';
 import { ValidatorMessageComponent } from './validator-message/validator-message.component';
 import { ValidatorNetworkComponent } from './validator-network/validator-network.component';
+import { TableEntityComponent } from './table-entity/table-entity.component';
+import { DialogEntityComponent } from './dialog-entity/dialog-entity.component';
 
 
 const appRoutes: Routes = [
@@ -116,10 +119,13 @@ const appRoutes: Routes = [
     ProductsCreateComponent,
     ValidatorMessageComponent,
     ValidatorNetworkComponent,
+    TableEntityComponent,
+    DialogEntityComponent,
   ],
   imports: [
     FormsModule,
     TableModule,
+    DialogModule,
     ButtonModule,
     BrowserModule,
     TabMenuModule,

@@ -1,0 +1,34 @@
+<div class="row mt-2">
+  <div class="col-md-12">
+    <p-scrollPanel [style]="{width: '100%'}">
+      <p-table [columns]="cols" [value]="entityList" selectionMode="single" [(selection)]="selectedEntity" (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="5">
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th *ngFor="let col of columns" [pSortableColumn]="col.field"  class="{{col.class}}">
+              {{col.header}}
+              <p-sortIcon [field]="col.field"></p-sortIcon>
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+          <tr [pSelectableRow]="rowData">
+            <td *ngFor="let col of columns">
+              {{ rowData[col.field] }}
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="summary" let-rowData>
+          <div style="text-align:left">
+            <button type="button" pButton icon="pi pi-pw pi-plus" (click)="showDialogToAdd()" label="Add"></button>
+          </div>
+        </ng-template>
+      </p-table>
+    </p-scrollPanel>
+  </div>
+</div>
+<div class="row mt-2">
+  <div class="col-md-12">
+    <button routerLink="/products/create" pButton type="button" label="Создать продукт"></button>
+  </div>
+</div>
+<app-dialog-entity [selectedEntity]="selectedEntity" [entityList]="entityList" [entity]="entity" (childEvent)="onAction($event)"></app-dialog-entity>

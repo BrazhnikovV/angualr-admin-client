@@ -1,0 +1,58 @@
+<p-dialog header="Car Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"  [style]="{width: '300px'}">
+  <div class="ui-g ui-fluid" *ngIf="entity">
+    <div class="ui-g-12" *ngIf="entity.hasOwnProperty('id')">
+      <div class="ui-g-4">
+        <label for="ID">ID</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="id" [(ngModel)]="entity.id" />
+      </div>
+    </div>
+    <div class="ui-g-12" *ngIf="entity.hasOwnProperty('name')">
+      <div class="ui-g-4">
+        <label for="name">Name</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="name" [(ngModel)]="entity.name" />
+      </div>
+    </div>
+    <div class="ui-g-12" *ngIf="entity.hasOwnProperty('description')">
+      <div class="ui-g-4">
+        <label for="description">Description</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="description" [(ngModel)]="entity.description" />
+      </div>
+    </div>
+    <div class="ui-g-12" *ngIf="entity.hasOwnProperty('price')">
+      <div class="ui-g-4">
+        <label for="price">Price</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="price" [(ngModel)]="entity.price" />
+      </div>
+    </div>
+    <div class="ui-g-12" *ngIf="entity.hasOwnProperty('code')">
+      <div class="ui-g-4">
+        <label for="code">Code</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="code" [(ngModel)]="entity.code" />
+      </div>
+    </div>
+    <div class="ui-g-12" *ngIf="entity.hasOwnProperty('hidden')">
+      <div class="ui-g-4">
+        <label for="hidden">Hidden</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="hidden" [(ngModel)]="entity.hidden" />
+      </div>
+    </div>
+  </div>
+  <p-footer>
+    <div class="ui-dialog-buttonpane ui-helper-clearfix">
+      <button type="button" pButton icon="fa fa-close" (click)="delete()" label="Delete"></button>
+      <button type="button" pButton icon="fa fa-check" (click)="save()" label="Save"></button>
+    </div>
+  </p-footer>
+</p-dialog>

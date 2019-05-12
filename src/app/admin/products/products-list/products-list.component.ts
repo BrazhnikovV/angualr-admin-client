@@ -15,15 +15,24 @@ export class ProductsListComponent implements OnInit {
 
   /**
    * @access private
-   * @var boolean checked
-   */
-  private checked: boolean;
-
-  /**
-   * @access private
    * @var products: []
    */
   private products: Product[];
+
+  /**
+   * @access private
+   * @var products: Product
+   */
+  private product: Product = {
+    id: null,
+    name: null,
+    description: null,
+    price: null,
+    code: null,
+    hidden: null,
+    created_at: null,
+    updated_at: null
+  };
 
   /**
    * @access private
