@@ -31,4 +31,4 @@
     <button routerLink="/products/create" pButton type="button" label="Создать продукт"></button>
   </div>
 </div>
-<app-dialog-entity [selectedEntity]="selectedEntity" [entityList]="entityList" [entity]="entity" (childEvent)="onAction($event)"></app-dialog-entity>
+<app-dialog-entity [entity]="entity" (childEvent)="onAction($event)"></app-dialog-entity>

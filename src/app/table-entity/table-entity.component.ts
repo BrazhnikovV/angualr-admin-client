@@ -15,41 +15,47 @@ export class TableEntityComponent<T extends {}> implements OnInit {
 
   /**
    * @access private
-   * @var viewChildren: QueryList<DialogEntityComponent<T>> -
+   * @var viewChildren: QueryList<DialogEntityComponent<T>> - объект для управления дочернеми компонентами
    */
   @ViewChildren( DialogEntityComponent )
   private viewChildren: QueryList<DialogEntityComponent<T>>;
 
   /**
    * @access private
-   * @var entityList: Array<T>
+   * @var entityList: Array<T> - массив сущностей(записи в таблице)
    */
   @Input()
   private entityList: Array<T>;
 
   /**
    * @access private
-   * @var product: T
+   * @var product: T - текущая сущность(выбранная строка, новая строка)
    */
   @Input()
   private entity: T;
 
   /**
    * @access private
-   * @var selectedProduct: T
+   * @var selectedProduct: T - выбранная строка
    */
   private selectedEntity: T;
 
   /**
    * @access private
-   * @var defaultEntity: T
+   * @var defaultEntity: T - скелет сущности, для сброса диалового окна при создании новой записи
    */
-  @Input()
   private defaultEntity: T;
 
   /**
    * @access private
-   * @var cols: []
+   * @var newEntity: boolean - флаг новой сущности
+   */
+  private newEntity: boolean;
+
+
+  /**
+   * @access private
+   * @var cols: [] - структура таблицы(передается вызывающим компонентом)
    */
   @Input()
   private cols = [];
@@ -65,11 +71,7 @@ export class TableEntityComponent<T extends {}> implements OnInit {
    */
   ngOnInit() {
     console.log('### TableEntityComponent => ngOnInit()');
-    let entity: any = new class<T extends {}> {};
-    for ( let prop in this.entity ) {
-      entity[prop] = this.entity[prop];
-    }
-    this.defaultEntity = entity;
+    this.defaultEntity = this.cloneEntity( this.entity );
   }
 
   /**
@@ -78,12 +80,10 @@ export class TableEntityComponent<T extends {}> implements OnInit {
    */
   showDialogToAdd() {
     console.log('### TableEntityComponent => showDialogToAdd()');
-    let entity: any = new class<T extends {}> {};
-    for ( let prop in this.defaultEntity ) {
-      entity[prop] = this.entity[prop];
-    }
-    this.entity = entity;
-    this.viewChildren.forEach( child => child.showDialogToAdd() );
+
+    this.newEntity = true;
+    this.entity = this.cloneEntity( this.defaultEntity );
+    this.viewChildren.first.displayDialog = true;
   }
 
   /**
@@ -108,10 +108,14 @@ export class TableEntityComponent<T extends {}> implements OnInit {
    */
   save() {
     console.log('### TableEntityComponent => save()');
+
     let entities = [...this.entityList];
-    entities.push(this.entity);
-    this.entityList = entities;
+    ( this.newEntity ) ? entities.push( this.entity )
+                       : entities[this.entityList.indexOf( this.selectedEntity )] = this.entity;
+
+    this.viewChildren.first.displayDialog = false;
     this.entity = this.defaultEntity;
+    this.entityList = entities;
   }
 
   /**
@@ -119,6 +123,10 @@ export class TableEntityComponent<T extends {}> implements OnInit {
    */
   delete() {
     console.log('### TableEntityComponent => delete()');
+
+    this.entity = null;
+    this.viewChildren.first.displayDialog = false;
+
     let index = this.entityList.indexOf( this.selectedEntity );
     this.entityList = this.entityList.filter((val, i) => i != index );
   }
@@ -130,6 +138,32 @@ export class TableEntityComponent<T extends {}> implements OnInit {
    */
   onRowSelect( event ) {
     console.log('### TableEntityComponent => onRowSelect()');
-    this.viewChildren.forEach( child => child.onRowSelect( event ) );
+
+    this.newEntity = false;
+    this.entity = this.cloneEntity( event.data );
+    this.viewChildren.first.displayDialog = true;
+  }
+
+  /**
+   * cloneEntity - клонировать сущность(логика от primefaces - table selected)
+   * @param e - объект клонируемой сущности
+   * @return Product
+   */
+  cloneEntity( e: any ): any {
+
+    let entity = this.createEntity();
+    for ( let prop in e ) {
+      entity[prop] = e[prop];
+    }
+
+    return entity;
+  }
+
+  /**
+   * createEntity - создать объект сущности
+   * @return T
+   */
+  createEntity<T>(): any {
+    return new class<T extends {}> {};
   }
 }

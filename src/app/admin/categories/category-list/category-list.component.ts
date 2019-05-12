@@ -16,15 +16,23 @@ export class CategoryListComponent implements OnInit {
 
   /**
    * @access private
-   * @var boolean checked
-   */
-  private checked: boolean;
-
-  /**
-   * @access private
    * @var categories: Category
    */
   private categories: Category[];
+
+  /**
+   * @access private
+   * @var category: Category
+   */
+  private category: Category = {
+    id: null,
+    name: null,
+    description: null,
+    nesting: null,
+    hidden: null,
+    created_at: null,
+    updated_at: null
+  };
 
   /**
    * constructor
@@ -44,13 +52,6 @@ export class CategoryListComponent implements OnInit {
     { field: 'nesting', header: 'Nesting', class: '' },
     { field: 'created_at', header: 'Created', class: '' }
   ];
-
-  /**
-   * onClickMe
-   */
-  onClickMe() {
-    console.log('You are my hero!');
-  }
 
   /**
    * ngOnInit

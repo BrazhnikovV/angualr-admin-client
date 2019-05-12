@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 /**
  * @class - DialogEntityComponent
@@ -20,13 +20,6 @@ export class DialogEntityComponent<T extends {}> implements OnInit {
 
   /**
    * @access private
-   * @var products: []
-   */
-  @Input()
-  private entityList: Array<T>;
-
-  /**
-   * @access private
    * @var product: Product
    */
   @Input()
@@ -34,22 +27,9 @@ export class DialogEntityComponent<T extends {}> implements OnInit {
 
   /**
    * @access private
-   * @var selectedProduct: Product
-   */
-  @Input()
-  private selectedEntity: T;
-
-  /**
-   * @access private
-   * @var newProduct: boolean
-   */
-  private newEntity: boolean;
-
-  /**
-   * @access private
    * @var displayDialog: boolean
    */
-  private displayDialog: boolean;
+  private _displayDialog: boolean;
 
   /**
    * constructor - конструктор
@@ -59,33 +39,13 @@ export class DialogEntityComponent<T extends {}> implements OnInit {
   /**
    * ngOnInit -
    */
-  ngOnInit() {
-
-  }
-
-  /**
-   * showDialogToAdd - показать диалоговое окно для ввода данных
-   * @return void
-   */
-  showDialogToAdd() {
-    this.newEntity = true;
-    this.displayDialog = true;
-  }
+  ngOnInit() {}
 
   /**
    * save - сохранить зменения
    * @return void
    */
   save() {
-    let entities = [...this.entityList];
-    if ( this.newEntity ) {
-      entities.push(this.entity);
-    }
-    else {
-      entities[this.entityList.indexOf( this.selectedEntity )] = this.entity;
-    }
-
-    this.displayDialog = false;
     this.childEvent.emit( "save" );
   }
 
@@ -94,42 +54,16 @@ export class DialogEntityComponent<T extends {}> implements OnInit {
    * @return void
    */
   delete() {
-    this.entity = null;
-    this.displayDialog = false;
     this.childEvent.emit( "delete" );
   }
 
   /**
-   * onRowSelect - перехватываем события клика по строкам таблицы
-   * @param event - объект события
+   * set displayDialog - установить состояние окна
+   * @setter
+   * @param value - значение состояния окна(скрыто/показано)
    * @return void
    */
-  onRowSelect( event ) {
-    this.newEntity = false;
-    this.entity = this.cloneEntity( event.data );
-    this.displayDialog = true;
-  }
-
-  /**
-   * cloneEntity - клонировать сущность(логика от primefaces - table selected)
-   * @param e - объект клонируемой сущности
-   * @return Product
-   */
-  cloneEntity( e: any ): any {
-
-    let entity = this.createEntity();
-    for ( let prop in e ) {
-      entity[prop] = e[prop];
-    }
-
-    return entity;
-  }
-
-  /**
-   * createEntity - создать объект сущности
-   * @return T
-   */
-  createEntity<T>(): any {
-    return new class<T extends {}> {};
+  public set displayDialog( value: boolean ) {
+    this._displayDialog = value;
   }
 }

@@ -21,6 +21,19 @@ export class PartnersListComponent implements OnInit {
 
   /**
    * @access private
+   * @var partner: Partner
+   */
+  private partner: Partner = {
+    id: null,
+    name: null,
+    description: null,
+    hidden: null,
+    created_at: null,
+    updated_at: null
+  };
+
+  /**
+   * @access private
    * @var cols: []
    */
   private cols = [
