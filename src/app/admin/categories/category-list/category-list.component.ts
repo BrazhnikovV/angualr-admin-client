@@ -61,4 +61,35 @@ export class CategoryListComponent implements OnInit {
       this.categories = response;
     });
   }
+
+  /**
+   * onAction - сохранить зменения
+   * @return void
+   */
+  onAction( action: string ) {
+    console.log('### CategoryListComponent => onAction()');
+    if ( action === 'save' ) {
+      this.save();
+    }
+
+    if ( action === 'delete' ) {
+      this.delete();
+    }
+  }
+
+  /**
+   * save - сохранить зменения
+   * @return void
+   */
+  private save() {
+    console.log('### CategoryListComponent => save()');
+  }
+
+  /**
+   * delete - удалить запись из таблицы
+   * @return void
+   */
+  private delete() {
+    console.log('### CategoryListComponent => delete()');
+  }
 }

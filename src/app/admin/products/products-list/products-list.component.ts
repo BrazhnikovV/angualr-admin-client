@@ -55,18 +55,42 @@ export class ProductsListComponent implements OnInit {
   constructor( private rpcService: RpcService ) {}
 
   /**
-   * onClickMe
-   */
-  onClickMe() {
-    console.log('You are my hero!');
-  }
-
-  /**
    * ngOnInit
    */
   ngOnInit() {
     this.rpcService.getProducts().subscribe(( response ) => {
       this.products = response;
     });
+  }
+
+  /**
+   * onAction - сохранить зменения
+   * @return void
+   */
+  onAction( action: string ) {
+    console.log('### ProductsListComponent => onAction()');
+    if ( action === 'save' ) {
+      this.save();
+    }
+
+    if ( action === 'delete' ) {
+      this.delete();
+    }
+  }
+
+  /**
+   * save - сохранить зменения
+   * @return void
+   */
+  private save() {
+    console.log('### ProductsListComponent => save()');
+  }
+
+  /**
+   * delete - удалить запись из таблицы
+   * @return void
+   */
+  private delete() {
+    console.log('### ProductsListComponent => delete()');
   }
 }

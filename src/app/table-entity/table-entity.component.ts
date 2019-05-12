@@ -1,9 +1,8 @@
-import { Component, Input, OnInit, QueryList, ViewChildren} from '@angular/core';
-import { RpcService } from 'src/app/services/rpc.service';
+import { Component, EventEmitter, Input, OnInit, Output, QueryList, ViewChildren } from '@angular/core';
 import { DialogEntityComponent } from '../dialog-entity/dialog-entity.component';
 
 /**
- * @class - ProductsListComponent
+ * @class - ProductsListComponent, T - обобщенный тип для сущностей
  * @classdesc - компонент отображения списка продуктов
  */
 @Component({
@@ -12,6 +11,13 @@ import { DialogEntityComponent } from '../dialog-entity/dialog-entity.component'
   styleUrls: ['./table-entity.component.sass']
 })
 export class TableEntityComponent<T extends {}> implements OnInit {
+
+  /**
+   * @access private
+   * @var childEvent: EventEmitter<string>
+   */
+  @Output()
+  private childEvent = new EventEmitter<string>();
 
   /**
    * @access private
@@ -52,7 +58,6 @@ export class TableEntityComponent<T extends {}> implements OnInit {
    */
   private newEntity: boolean;
 
-
   /**
    * @access private
    * @var cols: [] - структура таблицы(передается вызывающим компонентом)
@@ -62,15 +67,13 @@ export class TableEntityComponent<T extends {}> implements OnInit {
 
   /**
    * constructor
-   * @param rpcService
    */
-  constructor( private rpcService: RpcService ) {}
+  constructor() {}
 
   /**
    * ngOnInit
    */
   ngOnInit() {
-    console.log('### TableEntityComponent => ngOnInit()');
     this.defaultEntity = this.cloneEntity( this.entity );
   }
 
@@ -79,8 +82,6 @@ export class TableEntityComponent<T extends {}> implements OnInit {
    * @return void
    */
   showDialogToAdd() {
-    console.log('### TableEntityComponent => showDialogToAdd()');
-
     this.newEntity = true;
     this.entity = this.cloneEntity( this.defaultEntity );
     this.viewChildren.first.displayDialog = true;
@@ -91,7 +92,6 @@ export class TableEntityComponent<T extends {}> implements OnInit {
    * @return void
    */
   onAction( action: string ) {
-    console.log('### TableEntityComponent => onAction()');
 
     if ( action === 'save' ) {
       this.save();
@@ -107,8 +107,6 @@ export class TableEntityComponent<T extends {}> implements OnInit {
    * @return void
    */
   save() {
-    console.log('### TableEntityComponent => save()');
-
     let entities = [...this.entityList];
     ( this.newEntity ) ? entities.push( this.entity )
                        : entities[this.entityList.indexOf( this.selectedEntity )] = this.entity;
@@ -116,19 +114,21 @@ export class TableEntityComponent<T extends {}> implements OnInit {
     this.viewChildren.first.displayDialog = false;
     this.entity = this.defaultEntity;
     this.entityList = entities;
+
+    this.childEvent.emit( 'save' );
   }
 
   /**
    * delete - удалить запись из таблицы
    */
   delete() {
-    console.log('### TableEntityComponent => delete()');
-
     this.entity = null;
     this.viewChildren.first.displayDialog = false;
 
     let index = this.entityList.indexOf( this.selectedEntity );
     this.entityList = this.entityList.filter((val, i) => i != index );
+
+    this.childEvent.emit( 'delete' );
   }
 
   /**
@@ -137,8 +137,6 @@ export class TableEntityComponent<T extends {}> implements OnInit {
    * @return void
    */
   onRowSelect( event ) {
-    console.log('### TableEntityComponent => onRowSelect()');
-
     this.newEntity = false;
     this.entity = this.cloneEntity( event.data );
     this.viewChildren.first.displayDialog = true;

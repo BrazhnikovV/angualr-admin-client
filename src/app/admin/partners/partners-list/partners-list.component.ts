@@ -65,4 +65,35 @@ export class PartnersListComponent implements OnInit {
       this.partners = response;
     });
   }
+
+  /**
+   * onAction - сохранить зменения
+   * @return void
+   */
+  onAction( action: string ) {
+    console.log('### PartnersListComponent => onAction()');
+    if ( action === 'save' ) {
+      this.save();
+    }
+
+    if ( action === 'delete' ) {
+      this.delete();
+    }
+  }
+
+  /**
+   * save - сохранить зменения
+   * @return void
+   */
+  private save() {
+    console.log('### PartnersListComponent => save()');
+  }
+
+  /**
+   * delete - удалить запись из таблицы
+   * @return void
+   */
+  private delete() {
+    console.log('### PartnersListComponent => delete()');
+  }
 }
