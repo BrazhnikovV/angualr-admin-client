@@ -18,6 +18,12 @@ export interface Partner {
 
   /**
    * @access public
+   * @var url: string
+   */
+  url: string;
+
+  /**
+   * @access public
    * @var description: string
    */
   description: string;

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, QueryList, ViewChildren} from '@angular/core';
 import { RpcService } from 'src/app/services/rpc.service';
 import { Partner } from 'src/app/models/partner';
+import { TableEntityComponent } from 'src/app/table-entity/table-entity.component';
 
 /**
  * @class - PartnersListComponent
@@ -15,6 +16,13 @@ export class PartnersListComponent implements OnInit {
 
   /**
    * @access private
+   * @var viewChildren: QueryList<DialogEntityComponent<T>> - объект для управления дочернеми компонентами
+   */
+  @ViewChildren( TableEntityComponent )
+  private viewChildren: QueryList<TableEntityComponent<Partner>>;
+
+  /**
+   * @access private
    * @var products: []
    */
   private partners: Partner[];
@@ -26,6 +34,7 @@ export class PartnersListComponent implements OnInit {
   private partner: Partner = {
     id: null,
     name: null,
+    url: null,
     description: null,
     hidden: null,
     created_at: null,
@@ -39,6 +48,7 @@ export class PartnersListComponent implements OnInit {
   private cols = [
     { field: 'id', header: 'ID', class: 'th-btn' },
     { field: 'name', header: 'Name', class: '' },
+    { field: 'url', header: 'Url', class: '' },
     { field: 'description', header: 'Description', class: '' },
     { field: 'hidden', header: 'Hidden', class: '' },
     { field: 'created_at', header: 'Created', class: '' }
@@ -87,6 +97,20 @@ export class PartnersListComponent implements OnInit {
    */
   private save() {
     console.log('### PartnersListComponent => save()');
+
+    let entity: Partner = this.viewChildren.first.entity;
+    let id: number = entity.id;
+
+    if ( this.viewChildren.first.newEntity ) {
+      this.rpcService.postPartner(entity).subscribe(( response ) => {
+        console.log(response);
+      });
+    }
+    else {
+      this.rpcService.putPartner( entity, id ).subscribe(( response ) => {
+        console.log(response);
+      });
+    }
   }
 
   /**
@@ -95,5 +119,10 @@ export class PartnersListComponent implements OnInit {
    */
   private delete() {
     console.log('### PartnersListComponent => delete()');
+
+    let id: number = this.viewChildren.first.entity.id;
+    this.rpcService.deletePartner( id ).subscribe(( response ) => {
+      console.log(response);
+    });
   }
 }

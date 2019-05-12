@@ -104,8 +104,37 @@ export class RpcService {
    * @param data: Array<string> - массив данных для отправки на сервер
    * @return Observable<any> | throwError( error )
    */
-  public postPartner(  data: Array<string> = [] ): Observable<any> {
+  public postPartner(  data: any ): Observable<any> {
     return this.http.post<Partner[]>( this.apiUrl + 'partners' + this.token, data ).pipe(
+      tap(response => {}),
+      catchError(error => {
+        return throwError( error );
+      })
+    );
+  }
+
+  /**
+   * putPartner - обновить партнера
+   * @param data: Array<string> - массив данных для отправки на сервер
+   * @param id: number - идентификатор записи
+   * @return Observable<any> | throwError( error )
+   */
+  public putPartner(  data: {}, id: number ): Observable<any> {
+    return this.http.put<Partner[]>( this.apiUrl + 'partners/' + id + this.token, data ).pipe(
+      tap(response => {}),
+      catchError(error => {
+        return throwError( error );
+      })
+    );
+  }
+
+  /**
+   * deletePartner - удалить партнера
+   * @param id: number - идентификатор записи
+   * @return Observable<any> | throwError( error )
+   */
+  public deletePartner( id: number ): Observable<any> {
+    return this.http.delete<Partner[]>( this.apiUrl + 'partners/' + id + this.token ).pipe(
       tap(response => {}),
       catchError(error => {
         return throwError( error );

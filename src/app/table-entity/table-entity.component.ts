@@ -38,7 +38,7 @@ export class TableEntityComponent<T extends {}> implements OnInit {
    * @var product: T - текущая сущность(выбранная строка, новая строка)
    */
   @Input()
-  private entity: T;
+  public entity: T;
 
   /**
    * @access private
@@ -56,7 +56,7 @@ export class TableEntityComponent<T extends {}> implements OnInit {
    * @access private
    * @var newEntity: boolean - флаг новой сущности
    */
-  private newEntity: boolean;
+  public newEntity: boolean;
 
   /**
    * @access private
@@ -112,23 +112,24 @@ export class TableEntityComponent<T extends {}> implements OnInit {
                        : entities[this.entityList.indexOf( this.selectedEntity )] = this.entity;
 
     this.viewChildren.first.displayDialog = false;
+    // !!!Важно: событие в родительском компоненте нужно вызвать до очистки поля сущности
+    this.childEvent.emit( 'save' );
+
     this.entity = this.defaultEntity;
     this.entityList = entities;
-
-    this.childEvent.emit( 'save' );
   }
 
   /**
    * delete - удалить запись из таблицы
    */
   delete() {
-    this.entity = null;
     this.viewChildren.first.displayDialog = false;
 
     let index = this.entityList.indexOf( this.selectedEntity );
     this.entityList = this.entityList.filter((val, i) => i != index );
 
     this.childEvent.emit( 'delete' );
+    this.entity = null;
   }
 
   /**
