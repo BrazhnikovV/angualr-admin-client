@@ -1,5 +1,6 @@
 /** ==== Загружаем модули они должны быть подключены в разделе imports директивы NgModule */
 import { NgModule } from '@angular/core';
+import { ToastModule } from 'primeng/toast';
 import { DialogModule } from 'primeng/dialog';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
@@ -42,6 +43,8 @@ import { ValidatorNetworkComponent } from './validator-network/validator-network
 import { TableEntityComponent } from './table-entity/table-entity.component';
 import { DialogEntityComponent } from './dialog-entity/dialog-entity.component';
 import {ServerCookiesModule} from '@ngx-utils/cookies/server';
+import { ValidatorToastComponent } from './validator-toast/validator-toast.component';
+import { MessageService } from 'primeng/api';
 
 
 const appRoutes: Routes = [
@@ -122,10 +125,12 @@ const appRoutes: Routes = [
     ValidatorNetworkComponent,
     TableEntityComponent,
     DialogEntityComponent,
+    ValidatorToastComponent,
   ],
   imports: [
     FormsModule,
     TableModule,
+    ToastModule,
     DialogModule,
     ButtonModule,
     BrowserModule,
@@ -150,7 +155,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

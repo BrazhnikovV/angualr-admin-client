@@ -54,12 +54,12 @@ export class CategoryListComponent implements OnInit {
    * @var cols: []
    */
   private cols = [
-    { field: 'id', header: 'ID', class: 'th-btn' },
-    { field: 'name', header: 'Name', class: '' },
-    { field: 'description', header: 'Description', class: '' },
-    { field: 'hidden', header: 'Hidden', class: '' },
-    { field: 'nesting', header: 'Nesting', class: '' },
-    { field: 'created_at', header: 'Created', class: '' }
+    { field: 'id', header: 'ID', class: 'th-btn', validate: false },
+    { field: 'name', header: 'Name', class: '', validate: true },
+    { field: 'description', header: 'Description', class: '', validate: true },
+    { field: 'hidden', header: 'Hidden', class: '', validate: true },
+    { field: 'nesting', header: 'Nesting', class: '', validate: true },
+    { field: 'created_at', header: 'Created', class: '', validate: false }
   ];
 
   /**

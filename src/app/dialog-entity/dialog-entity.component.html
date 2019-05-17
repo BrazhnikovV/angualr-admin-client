@@ -1,19 +1,12 @@
+<form [formGroup]="entityForm" (ngSubmit)="onSubmit()" class="form-horizontal">
 <p-dialog header="Car Details" [(visible)]="_displayDialog" [responsive]="true" showEffect="fade" [modal]="true"  [style]="{width: '300px'}">
   <div class="ui-g ui-fluid" *ngIf="entity">
-    <div class="ui-g-12" *ngIf="entity.hasOwnProperty('id')">
-      <div class="ui-g-4">
-        <label for="ID">ID</label>
-      </div>
-      <div class="ui-g-8">
-        <input pInputText id="id" [(ngModel)]="entity.id" />
-      </div>
-    </div>
     <div class="ui-g-12" *ngIf="entity.hasOwnProperty('name')">
       <div class="ui-g-4">
         <label for="name">Name</label>
       </div>
       <div class="ui-g-8">
-        <input pInputText id="name" [(ngModel)]="entity.name" />
+        <input pInputText id="name" [(ngModel)]="entity.name" formControlName="name" />
       </div>
     </div>
     <div class="ui-g-12" *ngIf="entity.hasOwnProperty('url')">
@@ -21,7 +14,7 @@
         <label for="url">Url</label>
       </div>
       <div class="ui-g-8">
-        <input pInputText id="url" [(ngModel)]="entity.url" />
+        <input pInputText id="url" [(ngModel)]="entity.url" formControlName="url" />
       </div>
     </div>
     <div class="ui-g-12" *ngIf="entity.hasOwnProperty('description')">
@@ -29,7 +22,7 @@
         <label for="description">Description</label>
       </div>
       <div class="ui-g-8">
-        <input pInputText id="description" [(ngModel)]="entity.description" />
+        <input pInputText id="description" [(ngModel)]="entity.description" formControlName="description" />
       </div>
     </div>
     <div class="ui-g-12" *ngIf="entity.hasOwnProperty('nesting')">
@@ -37,7 +30,7 @@
         <label for="nesting">Nesting</label>
       </div>
       <div class="ui-g-8">
-        <input pInputText id="nesting" [(ngModel)]="entity.nesting" />
+        <input pInputText id="nesting" [(ngModel)]="entity.nesting" formControlName="nesting" />
       </div>
     </div>
     <div class="ui-g-12" *ngIf="entity.hasOwnProperty('price')">
@@ -45,7 +38,7 @@
         <label for="price">Price</label>
       </div>
       <div class="ui-g-8">
-        <input pInputText id="price" [(ngModel)]="entity.price" />
+        <input pInputText id="price" [(ngModel)]="entity.price" formControlName="price" />
       </div>
     </div>
     <div class="ui-g-12" *ngIf="entity.hasOwnProperty('code')">
@@ -53,7 +46,7 @@
         <label for="code">Code</label>
       </div>
       <div class="ui-g-8">
-        <input pInputText id="code" [(ngModel)]="entity.code" />
+        <input pInputText id="code" [(ngModel)]="entity.code" formControlName="code" />
       </div>
     </div>
     <div class="ui-g-12" *ngIf="entity.hasOwnProperty('hidden')">
@@ -61,14 +54,16 @@
         <label for="hidden">Hidden</label>
       </div>
       <div class="ui-g-8">
-        <input pInputText id="hidden" [(ngModel)]="entity.hidden" />
+        <input pInputText id="hidden" [(ngModel)]="entity.hidden" formControlName="hidden" />
       </div>
     </div>
   </div>
   <p-footer>
     <div class="ui-dialog-buttonpane ui-helper-clearfix">
       <button type="button" pButton icon="fa fa-close" (click)="delete()" label="Delete"></button>
-      <button type="button" pButton icon="fa fa-check" (click)="save()" label="Save"></button>
+      <button type="submit" pButton icon="fa fa-check" label="Save"></button>
     </div>
   </p-footer>
 </p-dialog>
+</form>
+<app-validator-toast></app-validator-toast>
