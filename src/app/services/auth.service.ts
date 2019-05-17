@@ -40,7 +40,9 @@ export class AuthService {
       return this.http.post( this.apiUrl, reqData )
         .pipe(
           tap(response => {
-            this.cookieService.put('token', response.toString() );
+            this.cookieService.put('token', response.toString(), {
+              httpOnly: true,
+            } );
           }),
           catchError( error => {
             return throwError( error );

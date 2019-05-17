@@ -41,6 +41,7 @@ import { ValidatorMessageComponent } from './validator-message/validator-message
 import { ValidatorNetworkComponent } from './validator-network/validator-network.component';
 import { TableEntityComponent } from './table-entity/table-entity.component';
 import { DialogEntityComponent } from './dialog-entity/dialog-entity.component';
+import {ServerCookiesModule} from '@ngx-utils/cookies/server';
 
 
 const appRoutes: Routes = [
@@ -138,7 +139,13 @@ const appRoutes: Routes = [
     InputSwitchModule,
     InputTextareaModule,
     HttpClientModule,
-    BrowserCookiesModule.forRoot(),
+    ServerCookiesModule.forRoot(),
+    BrowserCookiesModule.forRoot({
+      path: '/',
+      domain: 'localhost',
+      //expires: '01.01.2020',
+      //httpOnly: true
+    }),
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
     ReactiveFormsModule
