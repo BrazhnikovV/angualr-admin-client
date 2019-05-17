@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Messages } from 'primeng/primeng';
+import { HeandlerMessage } from '../utils/HeandlerMessage'
 
 /**
  * @class - ValidatorMessageComponent
@@ -28,16 +29,6 @@ export class ValidatorMessageComponent implements OnInit {
   private msgs: Messages[] = [];
 
   /**
-   *  @access private
-   *  @var msgCnf: {} - небор текстовых сообщений для различных видов валидации
-   */
-  private msgCnf: {} = {
-    required: ' Field is required',
-    email:    ' Field should contain e-mail',
-    pattern:  ' Field does not match to pattern'
-  }
-
-  /**
    * constructor
    */
   constructor() {}
@@ -59,27 +50,8 @@ export class ValidatorMessageComponent implements OnInit {
     }
 
     this.msgs = [];
-    if ( field.errors.hasOwnProperty( 'minlength' ) ) {
-      this.msgCnf['minlength'] = ` Minimum length ${ field.errors.minlength.requiredLength }`;
-    }
-    if ( field.errors.hasOwnProperty( 'maxlength' ) ) {
-      this.msgCnf['maxlength'] = ` Maximum length ${ field.errors.maxlength.requiredLength }`;
-    }
-    if ( field.errors.hasOwnProperty( 'min' ) ) {
-      this.msgCnf['min'] = ` Min number ${ field.errors.min.min }`;
-    }
-    if ( field.errors.hasOwnProperty( 'max' ) ) {
-      this.msgCnf['max'] = ` Max number length ${ field.errors.max.max }`;
-    }
+    let errors = HeandlerMessage.handle( field );
 
-    if ( field.errors.hasOwnProperty( 'pattern' ) ) {
-      if ( field.errors.pattern.requiredPattern === '^[0-9]*$' ) {
-        this.msgCnf['pattern'] = ` There must be a number: ${ field.errors.pattern.requiredPattern }`;
-      }
-    }
-
-    Object.keys( field.errors ).forEach( ( error: string ) => {
-      this.msgs.push(this.msgCnf[error]);
-    });
+    errors.forEach(el => this.msgs.push(el) );
   }
 }
