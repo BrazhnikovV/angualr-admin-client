@@ -55,6 +55,12 @@ export class DialogEntityComponent<T extends {}> implements OnInit {
   private _displayDialog: boolean;
 
   /**
+   * @access private
+   * @var isOnSubmit: boolean
+   */
+  private isOnSubmit: boolean = false;
+
+  /**
    * constructor - конструктор
    */
   constructor() {}
@@ -102,6 +108,7 @@ export class DialogEntityComponent<T extends {}> implements OnInit {
     console.log('### DialogEntityComponent => onSubmit()');
 
     let isError: boolean = false;
+    this.isOnSubmit = true;
 
     for ( let key in this.entityForm.controls ) {
       if ( this.entityForm.controls[key].errors ) {

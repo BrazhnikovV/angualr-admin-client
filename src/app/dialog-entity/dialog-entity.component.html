@@ -6,7 +6,9 @@
         <label for="name">Name</label>
       </div>
       <div class="ui-g-8">
-        <input pInputText id="name" [(ngModel)]="entity.name" formControlName="name"/>
+        <input pInputText
+               [ngClass]="{ 'ng-dirty ng-invalid' : isOnSubmit && entityForm.controls.name.invalid }"
+               id="name" [(ngModel)]="entity.name" formControlName="name"/>
       </div>
     </div>
     <div class="ui-g-12" *ngIf="entity.hasOwnProperty('url')">
@@ -14,7 +16,9 @@
         <label for="url">Url</label>
       </div>
       <div class="ui-g-8">
-        <input pInputText id="url" [(ngModel)]="entity.url" formControlName="url"/>
+        <input pInputText
+               [ngClass]="{ 'ng-dirty ng-invalid' : isOnSubmit && entityForm.controls.url.invalid }"
+               id="url" [(ngModel)]="entity.url" formControlName="url"/>
       </div>
     </div>
     <div class="ui-g-12" *ngIf="entity.hasOwnProperty('description')">
@@ -22,7 +26,9 @@
         <label for="description">Description</label>
       </div>
       <div class="ui-g-8">
-        <input pInputText id="description" [(ngModel)]="entity.description" formControlName="description"/>
+        <input pInputText
+               [ngClass]="{ 'ng-dirty ng-invalid' : isOnSubmit && entityForm.controls.description.invalid }"
+               id="description" [(ngModel)]="entity.description" formControlName="description"/>
       </div>
     </div>
     <div class="ui-g-12" *ngIf="entity.hasOwnProperty('nesting')">
@@ -30,7 +36,9 @@
         <label for="nesting">Nesting</label>
       </div>
       <div class="ui-g-8">
-        <input pInputText id="nesting" [(ngModel)]="entity.nesting" formControlName="nesting"/>
+        <input pInputText
+               [ngClass]="{ 'ng-dirty ng-invalid' : isOnSubmit && entityForm.controls.nesting.invalid }"
+               id="nesting" [(ngModel)]="entity.nesting" formControlName="nesting"/>
       </div>
     </div>
     <div class="ui-g-12" *ngIf="entity.hasOwnProperty('price')">
@@ -38,7 +46,9 @@
         <label for="price">Price</label>
       </div>
       <div class="ui-g-8">
-        <input pInputText id="price" [(ngModel)]="entity.price" formControlName="price"/>
+        <input pInputText
+               [ngClass]="{ 'ng-dirty ng-invalid' : isOnSubmit && entityForm.controls.price.invalid }"
+               id="price" [(ngModel)]="entity.price" formControlName="price"/>
       </div>
     </div>
     <div class="ui-g-12" *ngIf="entity.hasOwnProperty('code')">
@@ -46,7 +56,9 @@
         <label for="code">Code</label>
       </div>
       <div class="ui-g-8">
-        <input pInputText id="code" [(ngModel)]="entity.code" formControlName="code"/>
+        <input pInputText
+               [ngClass]="{ 'ng-dirty ng-invalid' : isOnSubmit && entityForm.controls.code.invalid }"
+               id="code" [(ngModel)]="entity.code" formControlName="code"/>
       </div>
     </div>
     <div class="ui-g-12" *ngIf="entity.hasOwnProperty('hidden')">
@@ -54,7 +66,9 @@
         <label for="hidden">Hidden</label>
       </div>
       <div class="ui-g-8">
-        <input pInputText id="hidden" [(ngModel)]="entity.hidden" formControlName="hidden"/>
+        <input pInputText
+               [ngClass]="{ 'ng-dirty ng-invalid' : isOnSubmit && entityForm.controls.hidden.invalid }"
+               id="hidden" [(ngModel)]="entity.hidden" formControlName="hidden"/>
       </div>
     </div>
   </div>
