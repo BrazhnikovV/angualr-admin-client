@@ -2,17 +2,18 @@
 import { NgModule } from '@angular/core';
 import { ToastModule } from 'primeng/toast';
 import { DialogModule } from 'primeng/dialog';
-import { RouterModule, Routes } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BrowserCookiesModule } from '@ngx-utils/cookies/browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { ButtonModule } from 'primeng/button';
 import { TabMenuModule } from 'primeng/tabmenu';
-import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { PanelMenuModule } from 'primeng/panelmenu';
+import { BreadcrumbModule } from 'primeng/breadcrumb';
+import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { BrowserModule } from '@angular/platform-browser';
+import { ServerCookiesModule } from '@ngx-utils/cookies/server';
+import { BrowserCookiesModule } from '@ngx-utils/cookies/browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
@@ -20,6 +21,7 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 
 /** ==== Загружаем компоненты они должны быть подключены в разделе declarations директивы NgModule */
+import { MessageService } from 'primeng/api';
 import { AppGuard } from './guards/app.guard';
 import { AppComponent } from './app.component';
 import { MessageModule } from 'primeng/message';
@@ -31,20 +33,18 @@ import { HeaderComponent } from './admin/header/header.component';
 import { SliderComponent } from './admin/slider/slider.component';
 import { LeftMenuComponent } from './left-menu/left-menu.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
+import { TableEntityComponent } from './table-entity/table-entity.component';
+import { DialogEntityComponent } from './dialog-entity/dialog-entity.component';
+import { ValidatorToastComponent } from './validator-toast/validator-toast.component';
 import { OrdersListComponent } from './admin/orders/orders-list/orders-list.component';
+import { ValidatorMessageComponent } from './validator-message/validator-message.component';
+import { ValidatorNetworkComponent } from './validator-network/validator-network.component';
 import { ProductsListComponent } from './admin/products/products-list/products-list.component';
 import { PartnersListComponent } from './admin/partners/partners-list/partners-list.component';
 import { CategoryListComponent } from './admin/categories/category-list/category-list.component';
 import { ProductsCreateComponent } from './admin/products/products-create/products-create.component';
 import { PartnersCreateComponent } from './admin/partners/partners-create/partners-create.component';
 import { CategoryCreateComponent } from './admin/categories/category-create/category-create.component';
-import { ValidatorMessageComponent } from './validator-message/validator-message.component';
-import { ValidatorNetworkComponent } from './validator-network/validator-network.component';
-import { TableEntityComponent } from './table-entity/table-entity.component';
-import { DialogEntityComponent } from './dialog-entity/dialog-entity.component';
-import {ServerCookiesModule} from '@ngx-utils/cookies/server';
-import { ValidatorToastComponent } from './validator-toast/validator-toast.component';
-import { MessageService } from 'primeng/api';
 
 
 const appRoutes: Routes = [

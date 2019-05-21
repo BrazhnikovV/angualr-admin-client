@@ -55,8 +55,14 @@ export class CategoryListComponent implements OnInit {
    */
   private cols = [
     { field: 'id', header: 'ID', class: 'th-btn', validate: false },
-    { field: 'name', header: 'Name', class: '', validate: true },
-    { field: 'description', header: 'Description', class: '', validate: true },
+    { field: 'name', header: 'Name', class: '', validate: {
+        required: true, minLength: 4, maxLength: 128
+      }
+    },
+    { field: 'description', header: 'Description', class: '', validate: {
+        required: true, minLength: 4, maxLength: 128
+      }
+    },
     { field: 'hidden', header: 'Hidden', class: '', validate: true },
     { field: 'nesting', header: 'Nesting', class: '', validate: true },
     { field: 'created_at', header: 'Created', class: '', validate: false }

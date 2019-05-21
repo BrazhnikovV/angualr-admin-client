@@ -63,11 +63,17 @@ export class DialogEntityComponent<T extends {}> implements OnInit {
    * ngOnInit -
    */
   ngOnInit() {
-    let obj: any = {};
+    let objValidators: any = {};
     this.cols.filter( ( el ) => el.validate ).map( ( el ) => {
-      obj[el.field] = new FormControl('', [Validators.required]);
+      if ( el.validate instanceof Object ) {
+        objValidators[el.field] = new FormControl('', this.formValidationRules( el.validate ) );
+      }
+      else {
+        objValidators[el.field] = new FormControl('', [Validators.required] );
+      }
     });
-    this.entityForm = new FormGroup(obj);
+
+    this.entityForm = new FormGroup( objValidators );
   }
 
   /**
@@ -110,5 +116,31 @@ export class DialogEntityComponent<T extends {}> implements OnInit {
     if ( !isError ) {
       this.childEvent.emit( "save" );
     }
+  }
+
+  /**
+   * formValidationRules - сформировать правила валидации для поля формы
+   * @param field - валидируемое поле
+   * @return any[]
+   */
+  formValidationRules( field ): any[] {
+
+    let vaildatorOpts: any = [];
+
+    Object.keys( field ).map( valdateEl => {
+      if ( valdateEl === 'required' ) {
+        vaildatorOpts.push( Validators.required );
+      }
+
+      if ( valdateEl === 'minLength' ) {
+        vaildatorOpts.push( Validators.minLength( field[valdateEl] ) );
+      }
+
+      if ( valdateEl === 'maxLength' ) {
+        vaildatorOpts.push( Validators.maxLength( field[valdateEl] ) );
+      }
+    });
+
+    return vaildatorOpts;
   }
 }
