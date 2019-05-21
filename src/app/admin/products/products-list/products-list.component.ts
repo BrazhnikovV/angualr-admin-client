@@ -48,13 +48,19 @@ export class ProductsListComponent implements OnInit {
    * @var cols: []
    */
   private cols = [
-    { field: 'id', header: 'ID', class: 'th-btn' },
-    { field: 'name', header: 'Name', class: '' },
-    { field: 'description', header: 'Description', class: '' },
-    { field: 'price', header: 'Price', class: '' },
-    { field: 'code', header: 'Code', class: '' },
-    { field: 'hidden', header: 'Hidden', class: '' },
-    { field: 'created_at', header: 'Created', class: '' }
+    { field: 'id', header: 'ID', class: 'th-btn', validate: false },
+    { field: 'name', header: 'Name', class: '', validate: {
+        required: true, minLength: 4, maxLength: 128
+      }
+    },
+    { field: 'description', header: 'Description', class: '', validate: {
+        required: true, minLength: 4, maxLength: 128
+      }
+    },
+    { field: 'price', header: 'Price', class: '', validate: true },
+    { field: 'code', header: 'Code', class: '', validate: true },
+    { field: 'hidden', header: 'Hidden', class: '', validate: true },
+    { field: 'created_at', header: 'Created', class: '', validate: false }
   ];
 
   /**
