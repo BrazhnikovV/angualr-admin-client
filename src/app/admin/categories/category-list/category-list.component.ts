@@ -96,7 +96,7 @@ export class CategoryListComponent implements OnInit {
   }
 
   /**
-   * save - сохранить зменения
+   * save - сохранить изменения или создать новую запись
    * @return void
    */
   private save() {
@@ -106,8 +106,11 @@ export class CategoryListComponent implements OnInit {
     let id: number = entity.id;
 
     if ( this.viewChildren.first.newEntity ) {
-      this.rpcService.postCategory(entity).subscribe(( response ) => {
-        console.log(response);
+      this.rpcService.postCategory( entity ).subscribe(( response ) => {
+        this.viewChildren.first.entityList.filter( filteredEl => filteredEl.id === null ).map( el => {
+          el.id = response.id;
+          el.created_at = response.created_at;
+        });
       });
     }
     else {

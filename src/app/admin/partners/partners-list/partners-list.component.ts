@@ -112,7 +112,10 @@ export class PartnersListComponent implements OnInit {
 
     if ( this.viewChildren.first.newEntity ) {
       this.rpcService.postPartner(entity).subscribe(( response ) => {
-        console.log(response);
+        this.viewChildren.first.entityList.filter( filteredEl => filteredEl.id === null ).map( el => {
+          el.id = response.id;
+          el.created_at = response.created_at;
+        });
       });
     }
     else {
