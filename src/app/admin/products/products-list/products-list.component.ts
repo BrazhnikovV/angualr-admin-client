@@ -48,7 +48,10 @@ export class ProductsListComponent implements OnInit {
    * @var cols: []
    */
   private cols = [
-    { field: 'id', header: 'ID', class: 'th-btn', validate: false },
+    { field: 'id', header: 'ID', class: 'th-btn', validate: {
+        minLength: 1
+      }
+    },
     { field: 'name', header: 'Name', class: '', validate: {
         required: true, minLength: 4, maxLength: 128
       }

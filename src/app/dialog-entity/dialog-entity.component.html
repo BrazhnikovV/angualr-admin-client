@@ -1,12 +1,13 @@
 <form [formGroup]="entityForm" (ngSubmit)="onSubmit()" class="form-horizontal">
-<p-dialog header="Car Details" [(visible)]="_displayDialog" [responsive]="true" showEffect="fade" [modal]="true"  [style]="{width: '300px'}">
+<p-dialog header="Создать/Редактировать запись" [(visible)]="_displayDialog" [responsive]="true" showEffect="fade" [modal]="true"  [style]="{width: '300px'}">
   <div class="ui-g ui-fluid" *ngIf="entity">
     <div class="ui-g-12" *ngIf="entity.hasOwnProperty('name')">
       <div class="ui-g-4">
         <label for="name">Name</label>
       </div>
       <div class="ui-g-8">
-        <input pInputText
+        <input  hidden id="id" *ngIf="entity.hasOwnProperty('id')" [(ngModel)]="entity.id" formControlName="id"/>
+        <input pInputText placeholder="Название"
                [ngClass]="{ 'ng-dirty ng-invalid' : isOnSubmit && entityForm.controls.name.invalid }"
                id="name" [(ngModel)]="entity.name" formControlName="name"/>
       </div>
@@ -16,7 +17,7 @@
         <label for="url">Url</label>
       </div>
       <div class="ui-g-8">
-        <input pInputText
+        <input pInputText placeholder="URL адрес"
                [ngClass]="{ 'ng-dirty ng-invalid' : isOnSubmit && entityForm.controls.url.invalid }"
                id="url" [(ngModel)]="entity.url" formControlName="url"/>
       </div>
@@ -26,7 +27,7 @@
         <label for="description">Description</label>
       </div>
       <div class="ui-g-8">
-        <input pInputText
+        <input pInputText placeholder="Описание"
                [ngClass]="{ 'ng-dirty ng-invalid' : isOnSubmit && entityForm.controls.description.invalid }"
                id="description" [(ngModel)]="entity.description" formControlName="description"/>
       </div>
@@ -36,7 +37,7 @@
         <label for="nesting">Nesting</label>
       </div>
       <div class="ui-g-8">
-        <input pInputText
+        <input pInputText placeholder="Родитель"
                [ngClass]="{ 'ng-dirty ng-invalid' : isOnSubmit && entityForm.controls.nesting.invalid }"
                id="nesting" [(ngModel)]="entity.nesting" formControlName="nesting"/>
       </div>
@@ -46,7 +47,7 @@
         <label for="price">Price</label>
       </div>
       <div class="ui-g-8">
-        <input pInputText
+        <input pInputText placeholder="Стоимость"
                [ngClass]="{ 'ng-dirty ng-invalid' : isOnSubmit && entityForm.controls.price.invalid }"
                id="price" [(ngModel)]="entity.price" formControlName="price"/>
       </div>
@@ -56,7 +57,7 @@
         <label for="code">Code</label>
       </div>
       <div class="ui-g-8">
-        <input pInputText
+        <input pInputText placeholder="Код продукта"
                [ngClass]="{ 'ng-dirty ng-invalid' : isOnSubmit && entityForm.controls.code.invalid }"
                id="code" [(ngModel)]="entity.code" formControlName="code"/>
       </div>
@@ -66,7 +67,7 @@
         <label for="hidden">Hidden</label>
       </div>
       <div class="ui-g-8">
-        <input pInputText
+        <input pInputText placeholder="Скрыть"
                [ngClass]="{ 'ng-dirty ng-invalid' : isOnSubmit && entityForm.controls.hidden.invalid }"
                id="hidden" [(ngModel)]="entity.hidden" formControlName="hidden"/>
       </div>
@@ -74,11 +75,11 @@
   </div>
   <p-footer>
     <div class="ui-dialog-buttonpane ui-helper-clearfix">
-      <div class="ui-g-8">
-        <button type="button" pButton (click)="delete()" label="Delete" class="ui-button-danger"></button>
+      <div class="ui-g-6">
+        <button type="button" pButton (click)="delete()" label="Удалить" class="ui-button-danger"></button>
       </div>
-      <div class="ui-g-4">
-        <button type="submit" pButton label="Save" class="ui-button-success"></button>
+      <div class="ui-g-6">
+        <button type="submit" pButton label="Сохранить" class="ui-button-success"></button>
       </div>
     </div>
   </p-footer>

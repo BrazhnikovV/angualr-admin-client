@@ -107,8 +107,15 @@ export class TableEntityComponent<T extends {}> implements OnInit {
    * @return void
    */
   save() {
+    console.log('### TableEntityComponent => save()');
+
+    // !!! Подумать над оптимизацией данного алгоритма
+    let maxId = this.entityList.reduce( ( max, p ) => p['id'] > max ? p['id'] : max, this.entityList[0]['id'] );
+    //---------------------------------------------------------------------------------------------------------
+
     let entities = [...this.entityList];
-    ( this.newEntity ) ? entities.push( this.entity )
+    ( this.newEntity ) ? this.entity['id'] = ++maxId : null;
+    ( this.newEntity ) ? entities.unshift( this.entity )
                        : entities[this.entityList.indexOf( this.selectedEntity )] = this.entity;
 
     this.viewChildren.first.displayDialog = false;
