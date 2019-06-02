@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
-import { CookiesService } from '@ngx-utils/cookies';
 
 /**
  * @class - AuthService
@@ -29,7 +28,7 @@ export class AuthService {
    * constructor
    * @param http - объект для работы с http
    */
-  constructor( private http: HttpClient, private cookieService: CookiesService ) {}
+  constructor( private http: HttpClient ) {}
 
   /**
    * login - выпонить аутентификацию на сервере
@@ -40,9 +39,7 @@ export class AuthService {
       return this.http.post( this.apiUrl, reqData )
         .pipe(
           tap(response => {
-            this.cookieService.put('token', response.toString(), {
-              httpOnly: true,
-            } );
+            sessionStorage.setItem('token', response.toString())
           }),
           catchError( error => {
             return throwError( error );
@@ -55,7 +52,7 @@ export class AuthService {
    * @return boolean
    */
   public logout(): void {
-    return this.cookieService.remove('token' );
+    sessionStorage.clear();
   }
 
   /**
@@ -63,6 +60,6 @@ export class AuthService {
    * @return boolean
    */
   public getIsLogged(): boolean {
-    return Boolean( this.cookieService.get('token') );
+    return Boolean( sessionStorage.getItem('token') );
   }
 }

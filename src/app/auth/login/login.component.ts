@@ -62,8 +62,6 @@ export class LoginComponent implements OnInit {
    * @return void
    */
   onSubmit() {
-    console.log('### LoginComponent => onSubmit()');
-
     this.authService.login( this.loginForm.value ).subscribe(
       response => { this.handleResponse( response ) },error => { this.handleError( error ) }
     );
