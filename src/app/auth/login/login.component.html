@@ -26,6 +26,7 @@
         <div class="col-md-12">
           <button *ngIf="loginForm.invalid" pButton type="submit" disabled label="Войти"></button>
           <button *ngIf="loginForm.valid" pButton type="submit" label="Войти"></button>
+          <button routerLink="/register" pButton type="button" class="ui-button-success ml-2" label="Регистрация"></button>
         </div>
       </div>
     </form>

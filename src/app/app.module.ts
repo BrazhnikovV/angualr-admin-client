@@ -10,8 +10,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { BrowserModule } from '@angular/platform-browser';
-import { ServerCookiesModule } from '@ngx-utils/cookies/server';
-import { BrowserCookiesModule } from '@ngx-utils/cookies/browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -26,15 +24,18 @@ import { AppGuard } from './guards/app.guard';
 import { AppComponent } from './app.component';
 import { MessageModule } from 'primeng/message';
 import { MessagesModule } from 'primeng/primeng';
+import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './auth/login/login.component';
 import { LogoutComponent } from './auth/logout/logout.component';
 import { TopMenuComponent } from './top-menu/top-menu.component';
 import { HeaderComponent } from './admin/header/header.component';
 import { SliderComponent } from './admin/slider/slider.component';
+import { RegisterComponent } from './register/register.component';
 import { LeftMenuComponent } from './left-menu/left-menu.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { TableEntityComponent } from './table-entity/table-entity.component';
 import { DialogEntityComponent } from './dialog-entity/dialog-entity.component';
+import { UsersListComponent } from './admin/user/users-list/users-list.component';
 import { ValidatorToastComponent } from './validator-toast/validator-toast.component';
 import { OrdersListComponent } from './admin/orders/orders-list/orders-list.component';
 import { ValidatorMessageComponent } from './validator-message/validator-message.component';
@@ -49,10 +50,17 @@ import { CategoryCreateComponent } from './admin/categories/category-create/cate
 
 const appRoutes: Routes = [
   {
+    path: '',
+    component: HomeComponent,
+    data: {'breadCrumbName':'Главная'},
+    canActivate:[AppGuard]
+  },
+  {
     path: 'header',
     component: HeaderComponent,
     data: {'breadCrumbName':'Шапка сайта'},
-    canActivate:[AppGuard] },
+    canActivate:[AppGuard]
+  },
   {
     path: 'slider',
     component: SliderComponent,
@@ -63,6 +71,22 @@ const appRoutes: Routes = [
     component: OrdersListComponent,
     data: {'breadCrumbName':'Заказы'},
     canActivate:[AppGuard]
+  },
+  {
+    path: 'users',
+    component: UsersListComponent,
+    data: {'breadCrumbName':'Пользователи'},
+    canActivate:[AppGuard]
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
+    data: {'breadCrumbName':'Регистрация'},
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    data: {'breadCrumbName':'Войти'},
   },
   { path: 'products/list',
     component: ProductsListComponent,
@@ -126,6 +150,9 @@ const appRoutes: Routes = [
     TableEntityComponent,
     DialogEntityComponent,
     ValidatorToastComponent,
+    UsersListComponent,
+    RegisterComponent,
+    HomeComponent,
   ],
   imports: [
     FormsModule,
@@ -144,13 +171,6 @@ const appRoutes: Routes = [
     InputSwitchModule,
     InputTextareaModule,
     HttpClientModule,
-    ServerCookiesModule.forRoot(),
-    BrowserCookiesModule.forRoot({
-      path: '/',
-      domain: 'localhost',
-      //expires: '01.01.2020',
-      //httpOnly: true
-    }),
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
     ReactiveFormsModule

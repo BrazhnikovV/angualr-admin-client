@@ -29,9 +29,7 @@ export class AppComponent {
   /**
    * ngOnInit
    */
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   /**
    * isLogged - выполнить fentynbabrfwb.
@@ -46,7 +44,8 @@ export class AppComponent {
    * @return boolean
    */
   private logout(): void {
-    this.router.navigate(['/']);
-    return this.authService.logout();
+    this.authService.logout();
+    //this.router.navigate(['/login']);
+    window.location.href = '/login';
   }
 }

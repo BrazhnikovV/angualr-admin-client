@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ValidatorMessageComponent } from '../../validator-message/validator-message.component';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 /**
  * @class - LoginComponent
@@ -49,7 +50,7 @@ export class LoginComponent implements OnInit {
    * constructor
    * @param authService: AuthService - сервис для выполнения запроса на аутентификацию
    */
-  constructor( private authService: AuthService ) {}
+  constructor( private authService: AuthService, private router: Router ) {}
 
   /**
    * ngOnInit
@@ -92,5 +93,6 @@ export class LoginComponent implements OnInit {
   private handleResponse( response: any ) {
     console.log('### LoginComponent => handleResponse()');
     console.log('response data:', response);
+    this.router.navigate(['/']);
   }
 }

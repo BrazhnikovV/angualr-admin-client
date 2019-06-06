@@ -1,0 +1,67 @@
+<h1 class="h1-register">Регистрация</h1>
+<div [ngClass]="{ 'hidden' : !errors }">
+  <app-validator-network [msgs]="errors"></app-validator-network>
+</div>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+  <div class="row mb-2">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-12 mt-2">
+          <div class="ui-g ui-fluid">
+            <div class="ui-g-12 ui-md-12 m-0 p-0">
+              <app-validator-message [field]="registerForm.get('username')"></app-validator-message>
+              <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><i class="pi pi-pw pi-user"></i></span>
+                <input (keyup)="inputChange()" type="text" pInputText placeholder="Имя пользователя" formControlName="username">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 mt-2">
+          <div class="ui-g ui-fluid">
+            <div class="ui-g-12 ui-md-12 m-0 p-0">
+              <app-validator-message [field]="registerForm.get('email')"></app-validator-message>
+              <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><i class="pi pi-pw pi-eject"></i></span>
+                <input (keyup)="inputChange()" type="text" pInputText placeholder="Email пользователя" formControlName="email">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 mt-2">
+          <div class="ui-g ui-fluid">
+            <div class="ui-g-12 ui-md-12 m-0 p-0">
+              <app-validator-message [field]="registerForm.get('password')"></app-validator-message>
+              <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><i class="pi pi-pw pi-lock"></i></span>
+                <input (keyup)="inputChange()" type="password" pInputText placeholder="Введите пароль" formControlName="password">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 mt-2">
+          <div class="ui-g ui-fluid">
+            <div class="ui-g-12 ui-md-12 m-0 p-0">
+              <app-validator-message [field]="registerForm.get('repeat_password')"></app-validator-message>
+              <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><i class="pi pi-pw pi-lock"></i></span>
+                <input (keyup)="inputChange()" type="password" pInputText placeholder="Подтвердите пароль" formControlName="repeat_password">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <button *ngIf="registerForm.invalid" pButton type="submit" disabled label="Зарегистрироваться"></button>
+      <button *ngIf="registerForm.valid" pButton type="submit" label="Зарегистрироваться"></button>
+      <button routerLink="/login" pButton type="button" class="ui-button-danger ml-2" label="Отмена"></button>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+</form>

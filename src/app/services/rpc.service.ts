@@ -6,6 +6,7 @@ import { Category } from '../models/category'
 import { Observable, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
+import {User} from '../models/user';
 
 /**
  * @class - RpcService
@@ -25,6 +26,19 @@ export class RpcService {
    * @param http - объект для работы с http
    */
   constructor( private http: HttpClient) {}
+
+  /**
+   * getUsers - получить список пользователей
+   * @return Observable<any> | throwError( error )
+   */
+  public getUsers(): Observable<any> {
+    return this.http.get<User[]>( this.apiUrl + 'users', this.getAuthHeaders() ).pipe(
+      tap(response => {}),
+      catchError(error => {
+        return throwError( error );
+      })
+    );
+  }
 
   /**
    * getCategories - получить список категорий

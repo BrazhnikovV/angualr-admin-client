@@ -16,11 +16,6 @@ export interface User {
    */
   username: string;
 
-  /**
-   * @access public
-   * @var auth_key: string
-   */
-  auth_key: string;
 
   /**
    * @access public
@@ -33,4 +28,16 @@ export interface User {
    * @var status: boolean
    */
   status: boolean;
+
+  /**
+   * @access public
+   * @var created_at: number
+   */
+  created_at: number;
+
+  /**
+   * @access public
+   * @var updated_at: number
+   */
+  updated_at: number;
 }

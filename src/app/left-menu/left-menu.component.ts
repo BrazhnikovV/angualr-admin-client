@@ -63,6 +63,11 @@ export class LeftMenuComponent implements OnInit {
           [
             { label: 'Список заказов', icon: 'pi pi-pw pi-list', routerLink: '/orders' },
           ]
+      },
+      { label: 'Пользователи', icon: 'pi pi-pw pi-user', items:
+          [
+            { label: 'Список заказов', icon: 'pi pi-pw pi-user', routerLink: '/users' },
+          ]
       }
     ];
   }

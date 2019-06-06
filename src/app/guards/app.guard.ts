@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router} from '@angular/router';
 import { Observable } from 'rxjs';
-import {AuthService} from '../services/auth.service';
+import { AuthService } from '../services/auth.service';
+import { RegisterService } from '../services/register.service';
 
 /**
  * @class - AppGuard
@@ -16,7 +17,7 @@ export class AppGuard implements CanActivate {
    * constructor
    * @param authService - сервис атентификации
    */
-  constructor ( private authService: AuthService ) {}
+  constructor ( private authService: AuthService, private router: Router ) {}
 
   /**
    * canActivate
@@ -27,6 +28,12 @@ export class AppGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    return this.authService.getIsLogged();
+
+    if ( this.authService.getIsLogged() ) {
+      return true;
+    }
+    else {
+      return this.router.navigate(['/login']);
+    }
   }
 }
