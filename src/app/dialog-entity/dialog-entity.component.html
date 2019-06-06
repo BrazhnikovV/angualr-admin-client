@@ -32,14 +32,14 @@
                id="description" [(ngModel)]="entity.description" formControlName="description"/>
       </div>
     </div>
-    <div class="ui-g-12" *ngIf="entity.hasOwnProperty('nesting')">
+    <div class="ui-g-12" *ngIf="entity.hasOwnProperty('parent_id')">
       <div class="ui-g-4">
         <label for="nesting">Nesting</label>
       </div>
       <div class="ui-g-8">
         <input pInputText placeholder="Родитель"
-               [ngClass]="{ 'ng-dirty ng-invalid' : isOnSubmit && entityForm.controls.nesting.invalid }"
-               id="nesting" [(ngModel)]="entity.nesting" formControlName="nesting"/>
+               [ngClass]="{ 'ng-dirty ng-invalid' : isOnSubmit && entityForm.controls.parent_id.invalid }"
+               id="nesting" [(ngModel)]="entity.parent_id" formControlName="parent_id"/>
       </div>
     </div>
     <div class="ui-g-12" *ngIf="entity.hasOwnProperty('price')">

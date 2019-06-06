@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { ToastModule } from 'primeng/toast';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
-import { TabMenuModule } from 'primeng/tabmenu';
+import { ToolbarModule } from 'primeng/toolbar';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { RouterModule, Routes } from '@angular/router';
@@ -161,12 +161,12 @@ const appRoutes: Routes = [
     DialogModule,
     ButtonModule,
     BrowserModule,
-    TabMenuModule,
     MessageModule,
+    ToolbarModule,
     MessagesModule,
-    BreadcrumbModule,
     PanelMenuModule,
     InputTextModule,
+    BreadcrumbModule,
     ScrollPanelModule,
     InputSwitchModule,
     InputTextareaModule,

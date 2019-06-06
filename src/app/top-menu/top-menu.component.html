@@ -1,1 +1,12 @@
-<p-tabMenu [model]="items"></p-tabMenu>
+<p-toolbar>
+  <div class="ui-toolbar-group-left">
+        <span class="username"><i class="pi pi-pw pi-user"></i> {{username}}</span>
+  </div>
+
+  <div class="ui-toolbar-group-right">
+    <!--<button pButton type="button" icon="pi pi-search" class="ml-2"></button>
+    <button pButton type="button" icon="pi pi-calendar" class="ui-button-success ml-2"></button>
+    <button pButton type="button" icon="pi pi-times" class="ui-button-danger ml-2"></button>-->
+    <app-logout (click)="logout()"></app-logout>
+  </div>
+</p-toolbar>

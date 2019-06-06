@@ -39,7 +39,8 @@ export class AuthService {
       return this.http.post( this.apiUrl, reqData )
         .pipe(
           tap(response => {
-            sessionStorage.setItem('token', response.toString())
+            sessionStorage.setItem('token', response['auth_key'].toString());
+            sessionStorage.setItem('username', response['username'].toString());
           }),
           catchError( error => {
             return throwError( error );

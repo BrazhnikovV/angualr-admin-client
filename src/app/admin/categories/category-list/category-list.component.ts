@@ -35,9 +35,9 @@ export class CategoryListComponent implements OnInit {
    */
   private category: Category = {
     id: null,
+    parent_id: null,
     name: null,
     description: null,
-    nesting: null,
     hidden: null,
     created_at: null,
     updated_at: null
@@ -67,7 +67,7 @@ export class CategoryListComponent implements OnInit {
       }
     },
     { field: 'hidden', header: 'Hidden', class: '', validate: true },
-    { field: 'nesting', header: 'Nesting', class: '', validate: true },
+    { field: 'parent_id', header: 'Nesting', class: '', validate: true },
     { field: 'created_at', header: 'Created', class: '', validate: false }
   ];
 

@@ -12,6 +12,12 @@ export interface Category {
 
   /**
    * @access public
+   * @var parent_id: number
+   */
+  parent_id: number;
+
+  /**
+   * @access public
    * @var name: string
    */
   name: string;
@@ -30,19 +36,13 @@ export interface Category {
 
   /**
    * @access public
-   * @var status: number
-   */
-  nesting: number;
-
-  /**
-   * @access public
-   * @var status: created_at
+   * @var created_at: created_at
    */
   created_at: number;
 
   /**
    * @access public
-   * @var status: updated_at
+   * @var updated_at: updated_at
    */
   updated_at: number;
 }

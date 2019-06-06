@@ -1,7 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { AuthService } from './services/auth.service';
-import { Router } from '@angular/router';
-
 
 /**
  * @class - AppComponent
@@ -16,6 +14,13 @@ export class AppComponent {
 
   /**
    * @access private
+   * @var childEvent: EventEmitter<string>
+   */
+  @Output()
+  private childEvent = new EventEmitter<string>();
+
+  /**
+   * @access private
    * @var String title
    */
   private title: String = 'angular-admin-panel';
@@ -24,7 +29,7 @@ export class AppComponent {
    * constructor
    * @param authService: AuthService - сервис аутентификации
    */
-  constructor( private authService: AuthService, private router: Router ) {}
+  constructor( private authService: AuthService ) {}
 
   /**
    * ngOnInit
@@ -40,12 +45,19 @@ export class AppComponent {
   }
 
   /**
+   * getName - получить имя пользователя
+   * @return string
+   */
+  private getName(): string {
+    return sessionStorage.getItem('username' );
+  }
+
+  /**
    * logout - выполнить выход из приложения
    * @return boolean
    */
-  private logout(): void {
+  private logout($event): void {
     this.authService.logout();
-    //this.router.navigate(['/login']);
     window.location.href = '/login';
   }
 }

@@ -8,11 +8,8 @@
 </div>
 <div *ngIf="isLogged()" id="container" class="container-fluid">
   <div class="row">
-    <div class="col-md-10 text-left mt-3">
-      <app-top-menu></app-top-menu>
-    </div>
-    <div class="col-md-2 text-left mt-3 text-right">
-      <app-logout (click)="logout()"></app-logout>
+    <div class="col-md-12 text-left mt-3">
+      <app-top-menu [username]="getName()" (childEvent)="logout($event)"></app-top-menu>
     </div>
   </div>
   <div class="row">

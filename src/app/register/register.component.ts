@@ -104,7 +104,6 @@ export class RegisterComponent implements OnInit {
   private handleResponse( response: any ) {
     console.log('### UserCreateComponent => handleResponse()');
     console.log('response data:', response);
-    sessionStorage.setItem('token', response.auth_key.toString())
     this.router.navigate(['/']);
   }
 }

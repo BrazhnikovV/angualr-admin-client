@@ -32,7 +32,10 @@ export class RegisterService {
   public register( reqData ): Observable<{} | HttpClient>  {
     return this.http.post( this.apiUrl, reqData )
       .pipe(
-        tap(response => {}),
+        tap(response => {
+          sessionStorage.setItem('token', response['auth_key'].toString());
+          sessionStorage.setItem('username', response['username'].toString());
+        }),
         catchError( error => {
           return throwError( error );
         })
