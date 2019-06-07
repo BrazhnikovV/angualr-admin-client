@@ -12,6 +12,12 @@ export interface Product {
 
   /**
    * @access public
+   * @var сcategory_id: number
+   */
+  сcategory_id: number;
+
+  /**
+   * @access public
    * @var name: string
    */
   name: string;

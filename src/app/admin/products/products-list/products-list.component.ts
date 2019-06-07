@@ -34,6 +34,7 @@ export class ProductsListComponent implements OnInit {
    */
   private product: Product = {
     id: null,
+    сcategory_id: null,
     name: null,
     description: null,
     price: null,
@@ -49,6 +50,10 @@ export class ProductsListComponent implements OnInit {
    */
   private cols = [
     { field: 'id', header: 'ID', class: 'th-btn', validate: {
+        minLength: 1
+      }
+    },
+    { field: 'category_id', header: 'CategoryID', class: '', validate: {
         minLength: 1
       }
     },

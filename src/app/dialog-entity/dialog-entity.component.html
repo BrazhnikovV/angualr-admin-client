@@ -12,6 +12,16 @@
                id="name" [(ngModel)]="entity.name" formControlName="name"/>
       </div>
     </div>
+    <div class="ui-g-12" *ngIf="entity.hasOwnProperty('category_id')">
+      <div class="ui-g-4">
+        <label for="name">Category</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText placeholder="Категория"
+               [ngClass]="{ 'ng-dirty ng-invalid' : isOnSubmit && entityForm.controls.category_id.invalid }"
+               id="category_id" [(ngModel)]="entity.category_id" formControlName="category_id"/>
+      </div>
+    </div>
     <div class="ui-g-12" *ngIf="entity.hasOwnProperty('url')">
       <div class="ui-g-4">
         <label for="url">Url</label>

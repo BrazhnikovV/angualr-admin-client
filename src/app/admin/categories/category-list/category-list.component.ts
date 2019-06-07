@@ -1,8 +1,7 @@
-import {Component, OnInit, QueryList, ViewChildren} from '@angular/core';
+import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { RpcService } from '../../../services/rpc.service';
 import { Category } from '../../../models/category';
-import {Partner} from '../../../models/partner';
-import {TableEntityComponent} from '../../../table-entity/table-entity.component';
+import { TableEntityComponent } from '../../../table-entity/table-entity.component';
 
 /**
  * @class - CategoryListComponent

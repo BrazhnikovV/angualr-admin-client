@@ -6,7 +6,7 @@ import { Category } from '../models/category'
 import { Observable, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
-import {User} from '../models/user';
+import { User } from '../models/user';
 
 /**
  * @class - RpcService
@@ -17,9 +17,15 @@ export class RpcService {
 
   /**
    *  @access private
-   *  @var string heroesUrl - url адрес rest api(rpc)
+   *  @var string apiCrudUrl - url адрес rest api(rpc)
    */
-  private apiUrl = 'http://shop-rest-api/v1/';
+  private apiCrudUrl = 'http://shop-rest-api/v1/';
+
+  /**
+   *  @access private
+   *  @var string apiReadUrl - url адрес rest api(rpc)
+   */
+  private apiReadUrl = 'http://shop-rest-api/v2/';
 
   /**
    * constructor - конструктор
@@ -32,7 +38,7 @@ export class RpcService {
    * @return Observable<any> | throwError( error )
    */
   public getUsers(): Observable<any> {
-    return this.http.get<User[]>( this.apiUrl + 'users', this.getAuthHeaders() ).pipe(
+    return this.http.get<User[]>( this.apiCrudUrl + 'users', this.getAuthHeaders() ).pipe(
       tap(response => {}),
       catchError(error => {
         return throwError( error );
@@ -45,7 +51,20 @@ export class RpcService {
    * @return Observable<any> | throwError( error )
    */
   public getCategories(): Observable<any> {
-    return this.http.get<Category[]>( this.apiUrl + 'categories', this.getAuthHeaders() ).pipe(
+    return this.http.get<Category[]>( this.apiCrudUrl + 'categories', this.getAuthHeaders() ).pipe(
+      tap(response => {}),
+      catchError(error => {
+        return throwError( error );
+      })
+    );
+  }
+
+  /**
+   * getNoParrentsCategories - получить список категорий не родительских
+   * @return Observable<any> | throwError( error )
+   */
+  public getNoParrentsCategories(): Observable<any> {
+    return this.http.get<Category[]>( this.apiReadUrl + 'categories/noparrentlist', this.getAuthHeaders() ).pipe(
       tap(response => {}),
       catchError(error => {
         return throwError( error );
@@ -59,7 +78,7 @@ export class RpcService {
    * @return Observable<any> | throwError( error )
    */
   public postCategory(  data: any ): Observable<any> {
-    return this.http.post<Category[]>( this.apiUrl + 'categories', data, this.getAuthHeaders() ).pipe(
+    return this.http.post<Category[]>( this.apiCrudUrl + 'categories', data, this.getAuthHeaders() ).pipe(
       tap(response => {}),
       catchError(error => {
         return throwError( error );
@@ -74,7 +93,7 @@ export class RpcService {
    * @return Observable<any> | throwError( error )
    */
   public putCategory(  data: {}, id: number ): Observable<any> {
-    return this.http.put<Category[]>( this.apiUrl + 'categories/' + id, data, this.getAuthHeaders() ).pipe(
+    return this.http.put<Category[]>( this.apiCrudUrl + 'categories/' + id, data, this.getAuthHeaders() ).pipe(
       tap(response => {}),
       catchError(error => {
         return throwError( error );
@@ -89,7 +108,7 @@ export class RpcService {
    * @return Observable<any> | throwError( error )
    */
   public deleteCategory( id: number ): Observable<any> {
-    return this.http.delete<Category[]>( this.apiUrl + 'categories/' + id, this.getAuthHeaders() ).pipe(
+    return this.http.delete<Category[]>( this.apiCrudUrl + 'categories/' + id, this.getAuthHeaders() ).pipe(
       tap(response => {}),
       catchError(error => {
         return throwError( error );
@@ -103,7 +122,7 @@ export class RpcService {
    */
   public getProducts(): Observable<any> {
 
-    return this.http.get<Product[]>( this.apiUrl + 'products', this.getAuthHeaders() ).pipe(
+    return this.http.get<Product[]>( this.apiCrudUrl + 'products', this.getAuthHeaders() ).pipe(
       tap(response => {}),
       catchError(error => {
         return throwError( error );
@@ -117,7 +136,7 @@ export class RpcService {
    * @return Observable<any> | throwError( error )
    */
   public postProduct(  data: any ): Observable<any> {
-    return this.http.post<Product[]>( this.apiUrl + 'products', data, this.getAuthHeaders() ).pipe(
+    return this.http.post<Product[]>( this.apiCrudUrl + 'products', data, this.getAuthHeaders() ).pipe(
       tap(response => {}),
       catchError(error => {
         return throwError( error );
@@ -132,7 +151,7 @@ export class RpcService {
    * @return Observable<any> | throwError( error )
    */
   public putProduct(  data: {}, id: number ): Observable<any> {
-    return this.http.put<Product[]>( this.apiUrl + 'products/' + id, data, this.getAuthHeaders() ).pipe(
+    return this.http.put<Product[]>( this.apiCrudUrl + 'products/' + id, data, this.getAuthHeaders() ).pipe(
       tap(response => {}),
       catchError(error => {
         return throwError( error );
@@ -146,7 +165,7 @@ export class RpcService {
    * @return Observable<any> | throwError( error )
    */
   public deleteProduct( id: number ): Observable<any> {
-    return this.http.delete<Product[]>( this.apiUrl + 'products/' + id, this.getAuthHeaders() ).pipe(
+    return this.http.delete<Product[]>( this.apiCrudUrl + 'products/' + id, this.getAuthHeaders() ).pipe(
       tap(response => {}),
       catchError(error => {
         return throwError( error );
@@ -159,7 +178,7 @@ export class RpcService {
    * @return Observable<any> | throwError( error )
    */
   public getPartners(): Observable<any> {
-    return this.http.get<Partner[]>( this.apiUrl + 'partners', this.getAuthHeaders() ).pipe(
+    return this.http.get<Partner[]>( this.apiCrudUrl + 'partners', this.getAuthHeaders() ).pipe(
       tap(response => {}),
       catchError(error => {
         return throwError( error );
@@ -173,7 +192,7 @@ export class RpcService {
    * @return Observable<any> | throwError( error )
    */
   public postPartner(  data: any ): Observable<any> {
-    return this.http.post<Partner[]>( this.apiUrl + 'partners', data, this.getAuthHeaders() ).pipe(
+    return this.http.post<Partner[]>( this.apiCrudUrl + 'partners', data, this.getAuthHeaders() ).pipe(
       tap(response => {}),
       catchError(error => {
         return throwError( error );
@@ -188,7 +207,7 @@ export class RpcService {
    * @return Observable<any> | throwError( error )
    */
   public putPartner(  data: {}, id: number ): Observable<any> {
-    return this.http.put<Partner[]>( this.apiUrl + 'partners/' + id , data, this.getAuthHeaders() ).pipe(
+    return this.http.put<Partner[]>( this.apiCrudUrl + 'partners/' + id , data, this.getAuthHeaders() ).pipe(
       tap(response => {}),
       catchError(error => {
         return throwError( error );
@@ -202,7 +221,7 @@ export class RpcService {
    * @return Observable<any> | throwError( error )
    */
   public deletePartner( id: number ): Observable<any> {
-    return this.http.delete<Partner[]>( this.apiUrl + 'partners/' + id, this.getAuthHeaders() ).pipe(
+    return this.http.delete<Partner[]>( this.apiCrudUrl + 'partners/' + id, this.getAuthHeaders() ).pipe(
       tap(response => {}),
       catchError(error => {
         return throwError( error );
@@ -215,7 +234,7 @@ export class RpcService {
    * @return Observable<any> | throwError( error )
    */
   public getOrders(): Observable<any> {
-    return this.http.get<Order[]>( this.apiUrl + 'orders', this.getAuthHeaders() ).pipe(
+    return this.http.get<Order[]>( this.apiCrudUrl + 'orders', this.getAuthHeaders() ).pipe(
       tap(response => {}),
       catchError(error => {
         return throwError( error );

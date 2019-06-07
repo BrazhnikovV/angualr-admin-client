@@ -4,6 +4,14 @@
 <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="form-horizontal">
   <div class="row mb-2">
     <div class="col-md-6 mt-2">
+      <p-dropdown
+        formControlName="category_id"
+        [options]="categories"
+        [(ngModel)]="selectedCategory" optionLabel="name" editable="true" placeholder="Выберите категорию : "></p-dropdown>
+    </div>
+  </div>
+  <div class="row mb-2">
+    <div class="col-md-6 mt-2">
       <div class="ui-g ui-fluid">
         <div class="ui-g-12 ui-md-12 m-0 p-0">
           <app-validator-message [field]="productForm.get('name')"></app-validator-message>

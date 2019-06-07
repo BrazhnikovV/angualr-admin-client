@@ -3,6 +3,7 @@ import { RpcService } from 'src/app/services/rpc.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ValidatorMessageComponent } from 'src/app/validator-message/validator-message.component';
+import {Category} from '../../../models/category';
 
 /**
  * @class - ProductsCreateComponent
@@ -25,6 +26,18 @@ export class ProductsCreateComponent implements OnInit {
 
   /**
    *  @access private
+   *  @var categories: Category[] - массив категорий для выбора
+   */
+  private categories: Category[];
+
+  /**
+   *  @access private
+   *  @var selectedCategory: Category -
+   */
+  private selectedCategory: Category;
+
+  /**
+   *  @access private
    *  @var errors: [] - массив ошибок, полученных при аутентификации
    */
   private errors: [];
@@ -34,6 +47,10 @@ export class ProductsCreateComponent implements OnInit {
    *  @var productForm: FormGroup - группа валидируемых полей
    */
   private productForm: FormGroup = new FormGroup({
+    category_id: new FormControl('', [
+      Validators.required,
+      Validators.minLength(1 )
+    ]),
     name: new FormControl('', [
       Validators.required,
       Validators.minLength(4 ),
@@ -74,7 +91,7 @@ export class ProductsCreateComponent implements OnInit {
    * @return void
    */
   onSubmit() {
-    console.log('### CategoryCreateComponent => onSubmit()');
+    this.productForm.get('category_id').setValue(this.selectedCategory.id );
     this.rpcService.postProduct( this.productForm.value ).subscribe(
       response => { this.handleResponse( response ) },error => { this.handleError( error ) }
     );
@@ -92,6 +109,9 @@ export class ProductsCreateComponent implements OnInit {
    * ngOnInit
    */
   ngOnInit() {
+    this.rpcService.getNoParrentsCategories().subscribe(
+      response => { this.categories = response; },error => { this.handleError( error ) }
+    );
     this.productForm.get('hidden').setValue(false );
   }
 
@@ -109,8 +129,6 @@ export class ProductsCreateComponent implements OnInit {
    * @param response - данные об ошибке
    */
   private handleResponse( response: any ) {
-    console.log('### CategoryCreateComponent => handleResponse()');
-    console.log('response data:', response);
     this.router.navigate(['/products/list']);
   }
 }

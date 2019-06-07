@@ -4,6 +4,7 @@ import { ToastModule } from 'primeng/toast';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { ToolbarModule } from 'primeng/toolbar';
+import { DropdownModule } from 'primeng/dropdown';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { RouterModule, Routes } from '@angular/router';
@@ -46,7 +47,6 @@ import { CategoryListComponent } from './admin/categories/category-list/category
 import { ProductsCreateComponent } from './admin/products/products-create/products-create.component';
 import { PartnersCreateComponent } from './admin/partners/partners-create/partners-create.component';
 import { CategoryCreateComponent } from './admin/categories/category-create/category-create.component';
-
 
 const appRoutes: Routes = [
   {
@@ -163,6 +163,7 @@ const appRoutes: Routes = [
     BrowserModule,
     MessageModule,
     ToolbarModule,
+    DropdownModule,
     MessagesModule,
     PanelMenuModule,
     InputTextModule,
