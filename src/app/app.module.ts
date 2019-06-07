@@ -7,7 +7,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { DropdownModule } from 'primeng/dropdown';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
-import { RouterModule, Routes } from '@angular/router';
+import { RoutingModule } from './router/routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { BrowserModule } from '@angular/platform-browser';
@@ -21,7 +21,6 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 
 /** ==== Загружаем компоненты они должны быть подключены в разделе declarations директивы NgModule */
 import { MessageService } from 'primeng/api';
-import { AppGuard } from './guards/app.guard';
 import { AppComponent } from './app.component';
 import { MessageModule } from 'primeng/message';
 import { MessagesModule } from 'primeng/primeng';
@@ -48,83 +47,6 @@ import { ProductsCreateComponent } from './admin/products/products-create/produc
 import { PartnersCreateComponent } from './admin/partners/partners-create/partners-create.component';
 import { CategoryCreateComponent } from './admin/categories/category-create/category-create.component';
 
-const appRoutes: Routes = [
-  {
-    path: '',
-    component: HomeComponent,
-    data: {'breadCrumbName':'Главная'},
-    canActivate:[AppGuard]
-  },
-  {
-    path: 'header',
-    component: HeaderComponent,
-    data: {'breadCrumbName':'Шапка сайта'},
-    canActivate:[AppGuard]
-  },
-  {
-    path: 'slider',
-    component: SliderComponent,
-    data: {'breadCrumbName':''},
-    canActivate:[AppGuard] },
-  {
-    path: 'orders',
-    component: OrdersListComponent,
-    data: {'breadCrumbName':'Заказы'},
-    canActivate:[AppGuard]
-  },
-  {
-    path: 'users',
-    component: UsersListComponent,
-    data: {'breadCrumbName':'Пользователи'},
-    canActivate:[AppGuard]
-  },
-  {
-    path: 'register',
-    component: RegisterComponent,
-    data: {'breadCrumbName':'Регистрация'},
-  },
-  {
-    path: 'login',
-    component: LoginComponent,
-    data: {'breadCrumbName':'Войти'},
-  },
-  { path: 'products/list',
-    component: ProductsListComponent,
-    data: {'breadCrumbName':'Список продуктов', 'icon':'pi pi-list'},
-    canActivate:[AppGuard]
-  },
-  {
-    path: 'products/create',
-    component: ProductsCreateComponent,
-    data: {'breadCrumbName':'Создать продукт', 'icon':'pi pi-plus'},
-    canActivate:[AppGuard]
-  },
-  {
-    path: 'category/list',
-    component: CategoryListComponent,
-    data: {'breadCrumbName':'Список категорий', 'icon':'pi pi-list' },
-    canActivate:[AppGuard]
-  },
-  {
-    path: 'category/create',
-    component: CategoryCreateComponent,
-    data: {'breadCrumbName':'Создать категорию', 'icon':'pi pi-plus' },
-    canActivate:[AppGuard]
-  },
-  {
-    path: 'partners/list',
-    component: PartnersListComponent,
-    data: {'breadCrumbName':'Список партнеров', 'icon':'pi pi-plus' },
-    canActivate:[AppGuard]
-  },
-  {
-    path: 'partners/create',
-    component: PartnersCreateComponent,
-    data: {'breadCrumbName':'Добавить партнера', 'icon':'pi pi-plus' },
-    canActivate:[AppGuard]
-  }
-  // { path: '**', component: Page404Component },
-];
 
 @NgModule({
   declarations: [
@@ -163,6 +85,7 @@ const appRoutes: Routes = [
     BrowserModule,
     MessageModule,
     ToolbarModule,
+    RoutingModule,
     DropdownModule,
     MessagesModule,
     PanelMenuModule,
@@ -173,7 +96,6 @@ const appRoutes: Routes = [
     InputTextareaModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(appRoutes),
     ReactiveFormsModule
   ],
   providers: [MessageService],
