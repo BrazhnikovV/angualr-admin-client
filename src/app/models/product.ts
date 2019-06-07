@@ -14,7 +14,7 @@ export interface Product {
    * @access public
    * @var сcategory_id: number
    */
-  сcategory_id: number;
+  category_id: number;
 
   /**
    * @access public

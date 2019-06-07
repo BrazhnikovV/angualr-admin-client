@@ -1,8 +1,8 @@
-import {Component, OnInit, QueryList, ViewChildren} from '@angular/core';
+import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { RpcService } from 'src/app/services/rpc.service';
 import { Product } from '../../../models/product';
-import {Partner} from '../../../models/partner';
-import {TableEntityComponent} from '../../../table-entity/table-entity.component';
+import { Partner } from '../../../models/partner';
+import { TableEntityComponent } from '../../../table-entity/table-entity.component';
 
 /**
  * @class - ProductsListComponent
@@ -28,13 +28,14 @@ export class ProductsListComponent implements OnInit {
    */
   private products: Product[];
 
+  // @ts-ignore
   /**
    * @access private
    * @var products: Product
    */
   private product: Product = {
     id: null,
-    сcategory_id: null,
+    category_id: null,
     name: null,
     description: null,
     price: null,
