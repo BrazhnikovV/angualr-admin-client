@@ -1,19 +1,19 @@
-import { NgModule } from '@angular/core';
+import { NgModule }             from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from '../home/home.component';
-import { AppGuard } from '../guards/app.guard';
-import { HeaderComponent } from '../admin/header/header.component';
-import { SliderComponent } from '../admin/slider/slider.component';
-import { OrdersListComponent } from '../admin/orders/orders-list/orders-list.component';
-import { UsersListComponent } from '../admin/user/users-list/users-list.component';
-import { RegisterComponent } from '../register/register.component';
-import { LoginComponent } from '../auth/login/login.component';
-import { ProductsListComponent } from '../admin/products/products-list/products-list.component';
+import { AppGuard }             from '../guards/app.guard';
+import { HomeComponent }        from '../home/home.component';
+import { RegisterComponent }    from '../register/register.component';
+import { LoginComponent }       from '../auth/login/login.component';
+import { HeaderComponent }      from '../admin/header/header.component';
+import { SliderComponent }      from '../admin/slider/slider.component';
+import { UsersListComponent }   from '../admin/user/users-list/users-list.component';
+import { OrdersListComponent }  from '../admin/orders/orders-list/orders-list.component';
+import { PartnersListComponent }   from '../admin/partners/partners-list/partners-list.component';
+import { ProductsListComponent }   from '../admin/products/products-list/products-list.component';
+import { CategoryListComponent }   from '../admin/categories/category-list/category-list.component';
 import { ProductsCreateComponent } from '../admin/products/products-create/products-create.component';
-import { CategoryListComponent } from '../admin/categories/category-list/category-list.component';
-import { CategoryCreateComponent } from '../admin/categories/category-create/category-create.component';
-import { PartnersListComponent } from '../admin/partners/partners-list/partners-list.component';
 import { PartnersCreateComponent } from '../admin/partners/partners-create/partners-create.component';
+import { CategoryCreateComponent } from '../admin/categories/category-create/category-create.component';
 
 /**
  * @var routes: Routes - маршруты приложения
