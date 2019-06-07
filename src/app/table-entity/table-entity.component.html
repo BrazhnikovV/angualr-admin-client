@@ -1,12 +1,17 @@
 <div class="row mt-2">
   <div class="col-md-12">
     <p-scrollPanel [style]="{width: '100%'}">
-      <p-table [columns]="cols" [value]="entityList" selectionMode="single" [(selection)]="selectedEntity" (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="5">
+      <p-table #dt [columns]="cols" [value]="entityList" selectionMode="single" [(selection)]="selectedEntity" (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="5">
         <ng-template pTemplate="header" let-columns>
           <tr>
             <th *ngFor="let col of columns" [pSortableColumn]="col.field"  class="{{col.class}}">
               {{col.header}}
               <p-sortIcon [field]="col.field"></p-sortIcon>
+            </th>
+          </tr>
+          <tr>
+            <th *ngFor="let col of columns" [ngSwitch]="col.field">
+              <input pInputText type="text" class="{{col.class}}" (input)="dt.filter( $event.target.value, col.field, col.filterMatchMode )">
             </th>
           </tr>
         </ng-template>
