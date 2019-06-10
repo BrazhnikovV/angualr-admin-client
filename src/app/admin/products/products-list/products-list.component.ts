@@ -3,6 +3,7 @@ import { RpcService } from 'src/app/services/rpc.service';
 import { Product } from '../../../models/product';
 import { Partner } from '../../../models/partner';
 import { TableEntityComponent } from '../../../table-entity/table-entity.component';
+import {Category} from 'src/app/models/category';
 
 /**
  * @class - ProductsListComponent
@@ -27,6 +28,18 @@ export class ProductsListComponent implements OnInit {
    * @var products: []
    */
   private products: Product[];
+
+  /**
+   *  @access private
+   *  @var categories: Category[] - массив категорий для выбора
+   */
+  private categories: Category[];
+
+  /**
+   *  @access private
+   *  @var selectedCategory: Category -
+   */
+  private selectedCategory: Category;
 
   // @ts-ignore
   /**
@@ -84,11 +97,15 @@ export class ProductsListComponent implements OnInit {
   ngOnInit() {
     this.rpcService.getProducts().subscribe(( response ) => {
       this.products = response;
+      this.rpcService.getNoParrentsCategories().subscribe(
+        response => { this.categories = response; },error => { console.log(error) }
+      );
     });
   }
 
   /**
-   * onAction - сохранить зменения
+   * onAction - слушаем события дочернего компонента,
+   * в данном случае это таблица сущности
    * @return void
    */
   onAction( action: string ) {
@@ -138,5 +155,14 @@ export class ProductsListComponent implements OnInit {
     this.rpcService.deleteProduct( id ).subscribe(( response ) => {
       console.log(response);
     });
+  }
+
+  /**
+   * getDropDonwList -
+   * @return
+   */
+  private getDropDonwList() {
+    console.log('### ProductsListComponent => getDropDonwList()');
+
   }
 }

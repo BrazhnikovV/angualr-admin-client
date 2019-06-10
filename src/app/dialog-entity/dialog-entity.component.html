@@ -17,9 +17,13 @@
         <label for="name">Category</label>
       </div>
       <div class="ui-g-8">
-        <input pInputText placeholder="Категория"
+        <p-dropdown
+          formControlName="category_id"
+          [options]="fieldList"
+          [(ngModel)]="selectedFieldList" (onChange)="onChangeFieldList()" optionLabel="name" editable="true" placeholder="Выберите категорию : "></p-dropdown>
+        <!--<input pInputText placeholder="Категория"
                [ngClass]="{ 'ng-dirty ng-invalid' : isOnSubmit && entityForm.controls.category_id.invalid }"
-               id="category_id" [(ngModel)]="entity.category_id" formControlName="category_id"/>
+               id="category_id" [(ngModel)]="entity.category_id" formControlName="category_id"/>-->
       </div>
     </div>
     <div class="ui-g-12" *ngIf="entity.hasOwnProperty('url')">

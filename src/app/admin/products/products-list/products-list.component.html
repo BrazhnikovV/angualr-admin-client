@@ -1,4 +1,6 @@
 <app-table-entity
   [cols]="cols"
   [entity]="product"
+  [fieldList]="categories"
+  [selectedFieldList]="selectedCategory"
   [entityList]="products" (childEvent)="onAction($event)"></app-table-entity>

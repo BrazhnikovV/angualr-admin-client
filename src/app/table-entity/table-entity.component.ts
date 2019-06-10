@@ -60,6 +60,20 @@ export class TableEntityComponent<T extends {}> implements OnInit {
 
   /**
    * @access private
+   * @var fieldList: T[]
+   */
+  @Input()
+  private fieldList: T[];
+
+  /**
+   * @access private
+   * @var selectedFieldList: T
+   */
+  @Input()
+  private selectedFieldList: T;
+
+  /**
+   * @access private
    * @var cols: [] - структура таблицы(передается вызывающим компонентом)
    */
   @Input()
@@ -100,13 +114,17 @@ export class TableEntityComponent<T extends {}> implements OnInit {
     if ( action === 'delete' ) {
       this.delete();
     }
+
+    if ( action === 'getDropDonwList' ) {
+      this.getDropDonwList();
+    }
   }
 
   /**
    * save - сохранить зменения
    * @return void
    */
-  save() {
+  private save() {
     console.log('### TableEntityComponent => save()');
 
     let entities = [...this.entityList];
@@ -124,7 +142,7 @@ export class TableEntityComponent<T extends {}> implements OnInit {
   /**
    * delete - удалить запись из таблицы
    */
-  delete() {
+  private delete() {
     this.viewChildren.first.displayDialog = false;
 
     let index = this.entityList.indexOf( this.selectedEntity );
@@ -139,7 +157,7 @@ export class TableEntityComponent<T extends {}> implements OnInit {
    * @param event - объект события
    * @return void
    */
-  onRowSelect( event ) {
+  private onRowSelect( event ) {
     this.newEntity = false;
     this.entity = this.cloneEntity( event.data );
     this.viewChildren.first.displayDialog = true;
@@ -150,7 +168,7 @@ export class TableEntityComponent<T extends {}> implements OnInit {
    * @param e - объект клонируемой сущности
    * @return Product
    */
-  cloneEntity( e: any ): any {
+  private cloneEntity( e: any ): any {
 
     let entity = this.createEntity();
     for ( let prop in e ) {
@@ -164,7 +182,11 @@ export class TableEntityComponent<T extends {}> implements OnInit {
    * createEntity - создать объект сущности
    * @return T
    */
-  createEntity<T>(): any {
+  private createEntity<T>(): any {
     return new class<T extends {}> {};
+  }
+
+  private getDropDonwList() {
+
   }
 }

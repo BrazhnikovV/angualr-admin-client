@@ -30,10 +30,24 @@ export class DialogEntityComponent<T extends {}> implements OnInit {
 
   /**
    * @access private
-   * @var product: Product
+   * @var entity: T
    */
   @Input()
   private entity: T;
+
+  /**
+   * @access private
+   * @var fieldList: T[]
+   */
+  @Input()
+  private fieldList: T[] = [];
+
+  /**
+   * @access private
+   * @var selectedFieldList: T
+   */
+  @Input()
+  private selectedFieldList: T;
 
   /**
    * @access private
@@ -69,6 +83,8 @@ export class DialogEntityComponent<T extends {}> implements OnInit {
    * ngOnInit -
    */
   ngOnInit() {
+    console.log('### DialogEntityComponent => ngOnInit()');
+
     let objValidators: any = {};
     this.cols.filter( ( el ) => el.validate ).map( ( el ) => {
       if ( el.validate instanceof Object ) {
@@ -102,6 +118,26 @@ export class DialogEntityComponent<T extends {}> implements OnInit {
   }
 
   /**
+   * ngAfterContentChecked - обновляем выбранный элемент списка
+   */
+  public ngAfterContentChecked() {
+
+    if ( this.fieldList === undefined ) {
+      return;
+    }
+
+    this.fieldList
+      .filter( filteredElement => filteredElement['id'] === this.entity['category_id'] )
+      .map( mapElement => {
+        this.selectedFieldList = mapElement;
+      });
+
+    if ( !this._displayDialog ) {
+      this.selectedFieldList = null;
+    }
+  }
+
+  /**
    * onSubmit
    */
   onSubmit() {
@@ -123,6 +159,14 @@ export class DialogEntityComponent<T extends {}> implements OnInit {
     if ( !isError ) {
       this.childEvent.emit( "save" );
     }
+  }
+
+  /**
+   * onChangeFieldList
+   */
+  onChangeFieldList() {
+    console.log('### DialogEntityComponent => onChangeFieldList()');
+    this.entity['category_id'] = this.selectedFieldList['id'];
   }
 
   /**
