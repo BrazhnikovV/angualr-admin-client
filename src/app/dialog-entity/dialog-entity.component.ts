@@ -122,6 +122,11 @@ export class DialogEntityComponent<T extends {}> implements OnInit {
    */
   public ngAfterContentChecked() {
 
+    if ( !this._displayDialog ) {
+      this.isOnSubmit = false;
+      this.selectedFieldList = null;
+    }
+
     if ( this.fieldList === undefined ) {
       return;
     }
@@ -131,10 +136,6 @@ export class DialogEntityComponent<T extends {}> implements OnInit {
       .map( mapElement => {
         this.selectedFieldList = mapElement;
       });
-
-    if ( !this._displayDialog ) {
-      this.selectedFieldList = null;
-    }
   }
 
   /**
@@ -157,6 +158,7 @@ export class DialogEntityComponent<T extends {}> implements OnInit {
     }
 
     if ( !isError ) {
+      this.isOnSubmit = false;
       this.childEvent.emit( "save" );
     }
   }
