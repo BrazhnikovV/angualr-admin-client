@@ -1,9 +1,9 @@
-import {Component, OnInit, ViewChildren, QueryList } from '@angular/core';
+import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
 import { RpcService } from 'src/app/services/rpc.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ValidatorMessageComponent } from 'src/app/validator-message/validator-message.component';
-import {Category} from '../../../models/category';
+import { Category } from '../../../models/category';
 
 /**
  * @class - ProductsCreateComponent
@@ -35,6 +35,8 @@ export class ProductsCreateComponent implements OnInit {
    *  @var selectedCategory: Category -
    */
   private selectedCategory: Category;
+
+  private formData: FormData = new FormData();
 
   /**
    *  @access private
@@ -72,6 +74,9 @@ export class ProductsCreateComponent implements OnInit {
       Validators.minLength(1 ),
       Validators.maxLength(10000 )
     ]),
+    files: new FormControl('' ,[
+      Validators.required
+    ]),
     hidden: new FormControl('' ,[
       Validators.required,
       Validators.minLength( 0 ),
@@ -92,7 +97,7 @@ export class ProductsCreateComponent implements OnInit {
    */
   onSubmit() {
     this.productForm.get('category_id').setValue(this.selectedCategory.id );
-    this.rpcService.postProduct( this.productForm.value ).subscribe(
+    this.rpcService.postProduct( this.formData ).subscribe(
       response => { this.handleResponse( response ) },error => { this.handleError( error ) }
     );
   }
@@ -130,5 +135,29 @@ export class ProductsCreateComponent implements OnInit {
    */
   private handleResponse( response: any ) {
     this.router.navigate(['/products/list']);
+  }
+
+  /**
+   * handleUploader - обработать событие выбора файолв для загрузки
+   * @param event - событие выбора файлов
+   */
+  private handleUploader( event ) {
+
+    let files = [];
+    let fileList: FileList = event.originalEvent.target.files;
+
+    Object.keys( fileList ).map( file => {
+      console.log('file = ', file);
+      this.formData.append('files', fileList[file])
+    });
+
+    this.formData.forEach((value, key) => {
+      console.log(key, value);
+    });
+
+    this.formData.append('data', JSON.stringify(this.productForm.value));
+
+    this.productForm.get('files').setValue(this.formData);
+    console.log(this.formData);
   }
 }

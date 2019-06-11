@@ -9,6 +9,7 @@ import { DropdownModule }      from 'primeng/dropdown';
 import { InputTextModule }     from 'primeng/inputtext';
 import { PanelMenuModule }     from 'primeng/panelmenu';
 import { BreadcrumbModule }    from 'primeng/breadcrumb';
+import { FileUploadModule }    from 'primeng/fileupload';
 import { InputSwitchModule }   from 'primeng/inputswitch';
 import { ScrollPanelModule }   from 'primeng/scrollpanel';
 import { HttpClientModule }    from '@angular/common/http';
@@ -88,6 +89,7 @@ import { CategoryCreateComponent } from './admin/categories/category-create/cate
     MessagesModule,
     PanelMenuModule,
     InputTextModule,
+    FileUploadModule,
     BreadcrumbModule,
     ScrollPanelModule,
     InputSwitchModule,

@@ -1,16 +1,18 @@
 <div [ngClass]="{ 'hidden' : !errors }">
   <app-validator-network [msgs]="errors"></app-validator-network>
 </div>
-<form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="form-horizontal">
-  <div class="row mb-2">
-    <div class="col-md-6 mt-2">
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data" class="form-horizontal">
+  <div class="row">
+    <div class="col-md-4 mt-2">
       <p-dropdown
         formControlName="category_id"
         [options]="categories"
         [(ngModel)]="selectedCategory" optionLabel="name" editable="true" placeholder="Выберите категорию : "></p-dropdown>
     </div>
-  </div>
-  <div class="row mb-2">
+    <div class="col-md-2 mt-2">
+      <span class="label-top">Видимость : </span>
+      <p-inputSwitch formControlName="hidden"></p-inputSwitch>
+    </div>
     <div class="col-md-6 mt-2">
       <div class="ui-g ui-fluid">
         <div class="ui-g-12 ui-md-12 m-0 p-0">
@@ -22,10 +24,9 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6 mt-2">
-      <span class="label-top">Видимость : </span>
-      <p-inputSwitch formControlName="hidden"></p-inputSwitch>
-    </div>
+  </div>
+  <div class="row mb-2">
+
   </div>
   <div class="row mb-2">
     <div class="col-md-6 mt-2">
@@ -62,9 +63,12 @@
     </div>
   </div>
   <div class="row mt-2">
-    <div class="col-md-12">
+    <div class="col-md-4">
       <button *ngIf="productForm.invalid" pButton type="submit" disabled label="Создать продукт"></button>
       <button *ngIf="productForm.valid" pButton type="submit" label="Создать продукт"></button>
+    </div>
+    <div class="col-md-8 upload-files-block">
+      <p-fileUpload (onSelect)="handleUploader($event)" auto="auto" multiple="multiple"></p-fileUpload>
     </div>
   </div>
 </form>
