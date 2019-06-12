@@ -68,7 +68,7 @@
       <button *ngIf="productForm.valid" pButton type="submit" label="Создать продукт"></button>
     </div>
     <div class="col-md-8 upload-files-block">
-      <p-fileUpload (onSelect)="handleUploader($event)" auto="auto" multiple="multiple"></p-fileUpload>
+      <p-fileUpload name="files[]" (onSelect)="handleUploader($event)" auto="auto" multiple="multiple"></p-fileUpload>
     </div>
   </div>
 </form>

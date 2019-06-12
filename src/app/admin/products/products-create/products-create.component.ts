@@ -32,10 +32,14 @@ export class ProductsCreateComponent implements OnInit {
 
   /**
    *  @access private
-   *  @var selectedCategory: Category -
+   *  @var selectedCategory: Category - сущность категория
    */
   private selectedCategory: Category;
 
+  /**
+   *  @access private
+   *  @var formData: FormData - объект для передачи файлов post запросом
+   */
   private formData: FormData = new FormData();
 
   /**
@@ -96,7 +100,6 @@ export class ProductsCreateComponent implements OnInit {
    * @return void
    */
   onSubmit() {
-    this.productForm.get('category_id').setValue(this.selectedCategory.id );
     this.rpcService.postProduct( this.formData ).subscribe(
       response => { this.handleResponse( response ) },error => { this.handleError( error ) }
     );
@@ -138,26 +141,22 @@ export class ProductsCreateComponent implements OnInit {
   }
 
   /**
-   * handleUploader - обработать событие выбора файолв для загрузки
+   * handleUploader - обработать событие выбора файлов для загрузки
    * @param event - событие выбора файлов
    */
   private handleUploader( event ) {
 
-    let files = [];
     let fileList: FileList = event.originalEvent.target.files;
 
     Object.keys( fileList ).map( file => {
-      console.log('file = ', file);
-      this.formData.append('files', fileList[file])
+      this.formData.append(file, fileList[file])
     });
 
-    this.formData.forEach((value, key) => {
-      console.log(key, value);
-    });
+    //this.formData.append('files', fileList);
 
-    this.formData.append('data', JSON.stringify(this.productForm.value));
-
-    this.productForm.get('files').setValue(this.formData);
+    this.productForm.get('category_id').setValue( this.selectedCategory.id );
+    this.formData.append('data', JSON.stringify( this.productForm.value ) );
+    this.productForm.get('files').setValue( this.formData );
     console.log(this.formData);
   }
 }
