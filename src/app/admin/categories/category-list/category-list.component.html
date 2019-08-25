@@ -3,3 +3,8 @@
   [entity]="category"
   [entityList]="categories" (childEvent)="onAction($event)">
 </app-table-entity>
+<div class="row mt-2">
+  <div class="col-md-12">
+    <button routerLink="/category/create" pButton type="button" label="Создать категорию"></button>
+  </div>
+</div>

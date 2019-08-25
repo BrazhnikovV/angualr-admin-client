@@ -4,3 +4,8 @@
   [fieldList]="categories"
   [selectedFieldList]="selectedCategory"
   [entityList]="products" (childEvent)="onAction($event)"></app-table-entity>
+<div class="row mt-2">
+  <div class="col-md-12">
+    <button routerLink="/products/create" pButton type="button" label="Создать продукт"></button>
+  </div>
+</div>
