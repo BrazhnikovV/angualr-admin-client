@@ -65,7 +65,7 @@ export class CategoryCreateComponent implements OnInit {
   onSubmit() {
     console.log('### CategoryCreateComponent => onSubmit()');
     this.rpcService.postCategory( this.categoryForm.value ).subscribe(
-      response => { this.handleResponse( response ) },error => { this.handleError( error ) }
+      response => { this.handleResponse( response ); },error => { this.handleError( error ) }
     );
   }
 

@@ -22,7 +22,7 @@ export class AuthService {
    *  @access private
    *  @var string apiUrl - url адрес rest api(rpc)
    */
-  private apiUrl = 'http://shop-rest-api/v1/user/login';
+  private apiUrl = 'http://shop-rest-api.p-trs.ru/v1/user/login';
 
   /**
    * constructor

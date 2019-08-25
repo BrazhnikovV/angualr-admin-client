@@ -19,13 +19,13 @@ export class RpcService {
    *  @access private
    *  @var string apiCrudUrl - url адрес rest api(rpc)
    */
-  private apiCrudUrl = 'http://shop-rest-api/v1/';
+  private apiCrudUrl = 'http://shop-rest-api.p-trs.ru/v1/';
 
   /**
    *  @access private
    *  @var string apiReadUrl - url адрес rest api(rpc)
    */
-  private apiReadUrl = 'http://shop-rest-api/v2/';
+  private apiReadUrl = 'http://shop-rest-api.p-trs.ru/v2/';
 
   /**
    * constructor - конструктор

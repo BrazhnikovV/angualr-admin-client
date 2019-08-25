@@ -46,6 +46,7 @@ import { CategoryListComponent }   from './admin/categories/category-list/catego
 import { ProductsCreateComponent } from './admin/products/products-create/products-create.component';
 import { PartnersCreateComponent } from './admin/partners/partners-create/partners-create.component';
 import { CategoryCreateComponent } from './admin/categories/category-create/category-create.component';
+import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -98,7 +99,7 @@ import { CategoryCreateComponent } from './admin/categories/category-create/cate
     BrowserAnimationsModule,
     ReactiveFormsModule
   ],
-  providers: [MessageService],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

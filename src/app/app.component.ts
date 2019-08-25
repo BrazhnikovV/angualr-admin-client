@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { AuthService } from './services/auth.service';
+import {Router} from '@angular/router';
 
 /**
  * @class - AppComponent
@@ -29,7 +30,7 @@ export class AppComponent {
    * constructor
    * @param authService: AuthService - сервис аутентификации
    */
-  constructor( private authService: AuthService ) {}
+  constructor( private authService: AuthService, private router: Router ) {}
 
   /**
    * ngOnInit
@@ -58,6 +59,6 @@ export class AppComponent {
    */
   private logout($event): void {
     this.authService.logout();
-    window.location.href = '/login';
+    this.router.navigate(['/login']);
   }
 }

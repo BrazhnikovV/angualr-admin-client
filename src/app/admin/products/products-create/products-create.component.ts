@@ -101,7 +101,7 @@ export class ProductsCreateComponent implements OnInit {
    */
   onSubmit() {
     this.rpcService.postProduct( this.formData ).subscribe(
-      response => { this.handleResponse( response ) },error => { this.handleError( error ) }
+      response => { this.handleResponse( response ); },error => { this.handleError( error ) }
     );
   }
 
